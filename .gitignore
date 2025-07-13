@@ -1,0 +1,34 @@
+# Hugo build output
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# Node modules (if using npm/yarn for theme assets)
+node_modules/
+
+# Cache
+.DS_Store
+Thumbs.db
+
+# Hugo themes (if using git submodules, otherwise don't ignore)
+# themes/
+
+# Build outputs
+*.tar.gz
+*.zip
+
+# OS / IDE specific
+.idea/
+.vscode/
+*.swp
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment variables
+.env
+.env.*
+hugo.toml
