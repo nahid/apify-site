@@ -1,0 +1,92 @@
+[
+{
+	"uri": "http://localhost:1313/getting-started/",
+	"title": "Getting Started",
+	"tags": [],
+	"description": "",
+	"content": "Initializing a New Project To create a new API testing project with default configuration:\ndotnet run init --name \u0026#34;My API Project\u0026#34; This will:\nCreate a .apify directory to store your API test definitions Generate a configuration file apify-config.json with development and production environments Create sample API test files in the .apify directory Running Your First Test After initialization, you can run the sample test:\ndotnet run call get For more detailed output, use the verbose flag:\ndotnet run call get --verbose For debugging information, use the debug flag:\ndotnet run call get --debug "
+},
+{
+	"uri": "http://localhost:1313/getting-started/installation/",
+	"title": "Installation",
+	"tags": [],
+	"description": "",
+	"content": "To use Apify, you need to have .NET 8.0 SDK installed on your system.\n# Clone the repository git clone https://github.com/yourusername/api-tester.git cd api-tester # Build the project dotnet build # Run the application dotnet run Native AOT Compilation Apify supports Native AOT (Ahead-of-Time) compilation, which produces a self-contained executable with no dependency on the .NET runtime. This results in:\nFaster startup time Smaller deployment size No dependency on the .NET runtime Improved performance To build the Native AOT version:\n# Using the build script ./build-native.sh # Or manually dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishAot=true The resulting executable will be located at: bin/Release/net8.0/linux-x64/publish/apify\nYou can run it directly without needing the .NET runtime:\n./bin/Release/net8.0/linux-x64/publish/apify Platform-Specific Builds For other platforms, replace linux-x64 with your target platform:\nWindows: win-x64 macOS: osx-x64 ARM64: linux-arm64 or osx-arm64 "
+},
+{
+	"uri": "http://localhost:1313/command-reference/",
+	"title": "Command Reference",
+	"tags": [],
+	"description": "",
+	"content": "Global Options The following options are available for all commands:\nOption Description Required Default --debug Show detailed debug output and stack traces No false The debug option enables detailed logging across all commands, showing:\nStack traces for any errors Additional implementation details of request/response handling Detailed information about assertion evaluations Verbose information about file loading and processing "
+},
+{
+	"uri": "http://localhost:1313/project-initialization/",
+	"title": "Project Initialization",
+	"tags": [],
+	"description": "",
+	"content": "Init Command Initializes a new API testing project. Can be run interactively or with options for non-interactive setup.\nOption Description Required Default --name The name of the API testing project Yes - --mock Create sample mock API definitions No false --force Force overwrite of existing files No false Example:\n# Interactive initialization dotnet run init # Non-interactive initialization dotnet run init --name \u0026#34;Payment API Tests\u0026#34; --mock Configuration Overview Apify projects can be configured using various methods, allowing you to tailor their behavior to specific needs and environments. Understanding the configuration hierarchy and available options is key to building robust and flexible Apify solutions.\nConfiguration Sources Apify CLI and actors typically read configuration from several sources, processed in a specific order of precedence (later sources override earlier ones):\napify.json (Project Configuration): This file, located in the root of your Apify project, defines project-level settings, such as actor name, version, and default input.\n.env files (Environment Variables): For local development, you can use .env files to set environment variables. These are useful for storing sensitive information (like API keys) or environment-specific settings without hardcoding them into your application.\nCommand-line Arguments: When running actors or CLI commands, you can pass configuration options directly as command-line arguments. These often take precedence over file-based configurations.\nPlatform Environment Variables: When your actor runs on the Apify platform, various environment variables are automatically set by the system (e.g., APIFY_LOCAL_STORAGE_DIR, APIFY_ACTOR_ID). These can also be used to influence your actor\u0026rsquo;s behavior.\nKey Configuration Areas Input Configuration: Defining the expected input for your actors, including data types, default values, and validation rules. Proxy Configuration: Setting up proxies for your web scraping tasks, including proxy groups and authentication. Compute Unit Allocation: Managing how your actor consumes compute units on the Apify platform. Logging and Error Handling: Configuring logging levels and how errors are reported. By effectively utilizing these configuration mechanisms, you can create highly adaptable Apify projects that perform consistently across different environments and use cases.\nConfiguration Properties Apify uses a configuration file (apify-config.json) to store environment variables and project settings.\n{ \u0026#34;Name\u0026#34;: \u0026#34;My API Project\u0026#34;, \u0026#34;DefaultEnvironment\u0026#34;: \u0026#34;Development\u0026#34;, \u0026#34;Variables\u0026#34;: { \u0026#34;projectVar\u0026#34;: \u0026#34;project-value\u0026#34; }, \u0026#34;Environments\u0026#34;: [ { \u0026#34;Name\u0026#34;: \u0026#34;Development\u0026#34;, \u0026#34;Variables\u0026#34;: { \u0026#34;baseUrl\u0026#34;: \u0026#34;https://dev-api.example.com\u0026#34; } } ] } This page lists common configuration properties used in Apify projects. These properties can be set in apify.json, via environment variables, or as command-line arguments, depending on the specific context.\nGeneral Properties APIFY_LOCAL_STORAGE_DIR: (Environment Variable) Specifies the directory where local key-value stores, request queues, and datasets are stored when running an actor locally. Defaults to ./apify_storage.\nAPIFY_TOKEN: (Environment Variable) Your Apify API token. Required for authenticating with the Apify platform when deploying or running actors remotely.\nAPIFY_ACTOR_ID: (Environment Variable) The ID of the currently running actor. Automatically set by the Apify platform.\nActor Input Properties These properties are typically defined in the actor\u0026rsquo;s input schema or provided as input to the actor run.\nstartUrls: (Input) An array of URLs from which the crawler should start scraping.\nproxyConfiguration: (Input) An object defining proxy settings for the actor, including useApifyProxy (boolean) and proxyUrls (array of strings).\nmaxRequestsPerCrawl: (Input) The maximum number of requests the crawler will process during a single run.\nmaxPagesPerCrawl: (Input) The maximum number of pages the crawler will visit during a single run.\nCrawler-Specific Properties handlePageFunction: (Code) A JavaScript function that defines how each page should be processed by the crawler.\nhandleRequestFunction: (Code) A JavaScript function that defines how each request should be handled before being sent.\npreNavigationHooks: (Code) An array of functions to be executed before navigation to a new URL.\npostNavigationHooks: (Code) An array of functions to be executed after navigation to a new URL.\nThis is not an exhaustive list, but it covers the most frequently used configuration properties. Refer to the specific actor or library documentation for a complete list of available options.\n"
+},
+{
+	"uri": "http://localhost:1313/variables/",
+	"title": "Variables",
+	"tags": [],
+	"description": "",
+	"content": "List Environment Command Lists all available environments and their variables.\ndotnet run list-env Variable System Apify provides a powerful variable system that supports template substitution in API definitions. Variables can be defined at three levels, in order of precedence:\nRequest-level variables (highest priority) Environment variables (medium priority) Project-level variables (lowest priority) Variables are referenced using {{variableName}}.\nCustom Variables You can define custom variables directly in API definition files within the Variables object.\n"
+},
+{
+	"uri": "http://localhost:1313/api-testing/",
+	"title": "API Testing",
+	"tags": [],
+	"description": "",
+	"content": "Create Request Creates a new API request definition interactively.\nOption Description Required Default --file The file path for the new API request definition Yes - --force Force overwrite if the file already exists No false The command will interactively prompt for all necessary information, including HTTP method, URI, headers, payload, and assertions.\nExample:\n# Create a new API request interactively dotnet run create request --file users.create API Test Definition API tests are defined in JSON files with the following structure:\n{ \u0026#34;Name\u0026#34;: \u0026#34;User API Test\u0026#34;, \u0026#34;Description\u0026#34;: \u0026#34;Tests the user endpoints\u0026#34;, \u0026#34;Uri\u0026#34;: \u0026#34;{{baseUrl}}/users/1\u0026#34;, \u0026#34;Method\u0026#34;: \u0026#34;GET\u0026#34;, \u0026#34;Headers\u0026#34;: { \u0026#34;Accept\u0026#34;: \u0026#34;application/json\u0026#34;, \u0026#34;Authorization\u0026#34;: \u0026#34;Bearer {{token}}\u0026#34; }, \u0026#34;Payload\u0026#34;: null, \u0026#34;PayloadType\u0026#34;: \u0026#34;none\u0026#34;, \u0026#34;Files\u0026#34;: null, \u0026#34;Tests\u0026#34;: [ { \u0026#34;Name\u0026#34;: \u0026#34;Status code is valid\u0026#34;, \u0026#34;Description\u0026#34;: \u0026#34;Checks if status code is 200\u0026#34;, \u0026#34;AssertType\u0026#34;: \u0026#34;StatusCode\u0026#34;, \u0026#34;ExpectedValue\u0026#34;: \u0026#34;200\u0026#34; } ], \u0026#34;Timeout\u0026#34;: 30000, \u0026#34;Variables\u0026#34;: { \u0026#34;customVar\u0026#34;: \u0026#34;my-custom-value\u0026#34; }, \u0026#34;Tags\u0026#34;: [\u0026#34;users\u0026#34;, \u0026#34;smoke\u0026#34;] } Fields Explained Field Type Description Required Name String Name of the API test Yes Description String Description of the test No Uri String The endpoint URI (supports variable substitution) Yes Method String HTTP method (GET, POST, PUT, DELETE, etc.) Yes Headers Object HTTP headers as key-value pairs No Payload String The request body (can be JSON, text, etc.) No PayloadType String Type of payload (none, json, text, formData) No Files Array Files to upload (for multipart/form-data) No Tests Array Test assertions to validate the response No Timeout Number Request timeout in milliseconds No Variables Object Custom variables defined in the test file No Tags Array Tags for filtering tests No Call Command Executes a single API test from a definition file.\nOption Description Required Default file API definition file to test (supports dot notation) Yes - --verbose or -v Display detailed output No false --env or -e Environment to use from the profile No Profile\u0026rsquo;s default --vars Runtime variables for the configuration No - Examples:\n# Run a single test using dot notation dotnet run call users.get # Run a test with a specific environment and runtime variables dotnet run call users.create --env Production --vars \u0026#34;userId=123,role=admin\u0026#34; The call command supports simplified paths using dot notation:\nusers.get will run .apify/users/get.json auth.login will run .apify/auth/login.json The .json extension is optional.\nPayload Types Apify supports multiple payload types for flexibility in testing different types of API endpoints.\nPayload Type Description Content-Type Header none No request body None json JSON structured data application/json text Plain text content text/plain formData URL-encoded form data application/x-wWw-form-urlencoded File Uploads Apify supports file uploads using multipart/form-data.\n\u0026#34;Files\u0026#34;: [ { \u0026#34;Name\u0026#34;: \u0026#34;Profile Picture\u0026#34;, \u0026#34;FieldName\u0026#34;: \u0026#34;avatar\u0026#34;, \u0026#34;FilePath\u0026#34;: \u0026#34;./images/profile.jpg\u0026#34;, \u0026#34;ContentType\u0026#34;: \u0026#34;image/jpeg\u0026#34; } ] Test Assertions Apify provides comprehensive assertion capabilities to validate API responses.\nSupported Assertion Types Assertion Type Description StatusCode Validates the HTTP status code ContainsProperty Checks if response JSON contains a specific property HeaderContains Validates a response header\u0026rsquo;s value ResponseTimeBelow Verifies response time is below a threshold Equal Checks if a JSON property equals a specific value IsArray Checks if a JSON property is an array ArrayNotEmpty Verifies a JSON array is not empty "
+},
+{
+	"uri": "http://localhost:1313/test-command/",
+	"title": "Test Command",
+	"tags": [],
+	"description": "",
+	"content": "The tests command scans the project directory and runs all API tests found.\nOption Description Required Default --verbose or -v Display detailed output including response body No false --dir The directory containing API test files No .apify --env or -e Environment to use from the profile No Profile\u0026rsquo;s default --vars Runtime variables for the configuration No - --tag Filter tests by tag No - Example:\n# Run all tests in the project dotnet run tests # Run all tests in a specific directory with verbose output dotnet run tests --dir \u0026#34;apis\u0026#34; --verbose # Run only tests with a specific tag dotnet run tests --tag payments "
+},
+{
+	"uri": "http://localhost:1313/mock-server/",
+	"title": "Mock Server",
+	"tags": [],
+	"description": "",
+	"content": "Create Mock Definition Creates a new mock API response definition interactively.\nOption Description Required Default --file The file path for the new mock API response definition Yes - --force or -f Overwrite existing file if it exists No false The command will interactively prompt for all necessary information, including endpoint, HTTP method, status code, headers, and response body.\nExample:\n# Create a new mock API response interactively dotnet run create mock --file users.get Mock Server Command Starts a local API mock server using mock definition files.\nOption Description Required Default --port or -p Port number to run the mock server on No 8080 --verbose or -v Enable verbose logging No false --directory or -d Directory containing mock definitions No \u0026ldquo;.apify\u0026rdquo; Example:\n# Start the mock server on a custom port with verbose logging dotnet run mock-server --port 3000 --verbose Basic Mock Server Create a file with the .mock.json extension in your .apify directory.\n{ \u0026#34;Name\u0026#34;: \u0026#34;Get User by ID\u0026#34;, \u0026#34;Method\u0026#34;: \u0026#34;GET\u0026#34;, \u0026#34;Endpoint\u0026#34;: \u0026#34;/api/users/:id\u0026#34;, \u0026#34;StatusCode\u0026#34;: 200, \u0026#34;ContentType\u0026#34;: \u0026#34;application/json\u0026#34;, \u0026#34;Response\u0026#34;: { \u0026#34;id\u0026#34;: 1, \u0026#34;name\u0026#34;: \u0026#34;John Doe\u0026#34; } } Advanced Mock Server Use conditional responses for more complex scenarios.\n{ \u0026#34;Name\u0026#34;: \u0026#34;User API\u0026#34;, \u0026#34;Method\u0026#34;: \u0026#34;GET\u0026#34;, \u0026#34;Endpoint\u0026#34;: \u0026#34;/api/users/:id\u0026#34;, \u0026#34;Responses\u0026#34;: [ { \u0026#34;Condition\u0026#34;: \u0026#34;q.id == \\\u0026#34;1\\\u0026#34;\u0026#34;, \u0026#34;StatusCode\u0026#34;: 200, \u0026#34;Response\u0026#34;: { \u0026#34;id\u0026#34;: 1, \u0026#34;name\u0026#34;: \u0026#34;John Doe\u0026#34; } }, { \u0026#34;Condition\u0026#34;: \u0026#34;true\u0026#34;, \u0026#34;StatusCode\u0026#34;: 404, \u0026#34;Response\u0026#34;: { \u0026#34;error\u0026#34;: \u0026#34;User not found\u0026#34; } } ] } Dynamic Responses The mock server supports dynamic responses using variable substitution.\nAvailable template variables: {{body}}, {{headers}}, {{query}}, {{path}}, {{timestamp}}, {{datetime}}, {{randomString}}, {{randomInt}}.\nConditional Responses Conditions are JavaScript expressions with access to request data: q (query), h (headers), b (body), p (path).\n"
+},
+{
+	"uri": "http://localhost:1313/examples/",
+	"title": "Examples",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://localhost:1313/troubleshooting/",
+	"title": "Troubleshooting",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://localhost:1313/",
+	"title": "Apify Documentation",
+	"tags": [],
+	"description": "",
+	"content": "Apify is a robust command-line tool designed for API testing and validation. It allows developers to define API tests in JSON format and execute them against endpoints, providing detailed output of the request, response, and test results. The tool offers centralized environment management, variable substitution, and support for various payload types and file uploads. It also includes a powerful mock server for simulating API responses during development and testing.\n"
+},
+{
+	"uri": "http://localhost:1313/categories/",
+	"title": "Categories",
+	"tags": [],
+	"description": "",
+	"content": ""
+},
+{
+	"uri": "http://localhost:1313/tags/",
+	"title": "Tags",
+	"tags": [],
+	"description": "",
+	"content": ""
+}]

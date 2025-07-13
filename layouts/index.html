@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ .Site.Title }}</title>
+    <link rel="stylesheet" href="{{ "css/homepage.css" | absURL }}">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body class="home">
+    <header class="hero">
+        <div class="container">
+            <h1>{{ .Site.Title }}</h1>
+            <p class="tagline">A robust command-line tool for API testing and validation.</p>
+            <a href="/getting-started/" class="btn btn-primary">Get Started</a>
+            <a href="https://github.com/apify/apify-doc" class="btn btn-secondary">GitHub</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="overview-section">
+            <div class="container">
+                <p class="overview-text">{{ .Content }}</p>
+            </div>
+        </section>
+
+        <section class="highlight-section">
+            <div class="container">
+                <div class="highlight-grid">
+                    <div class="highlight-item">
+                        <i class="fas fa-vial icon"></i>
+                        <h3>API Testing</h3>
+                        <p>Define, execute, and validate your API endpoints with comprehensive test definitions and assertions.</p>
+                    </div>
+                    <div class="highlight-item">
+                        <i class="fas fa-server icon"></i>
+                        <h3>Mock Server</h3>
+                        <p>Simulate API responses for efficient development, testing, and rapid prototyping without backend dependencies.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="container">
+                <h2>Key Features</h2>
+                <ul class="features-list">
+                    <li>
+                        <i class="fas fa-cogs"></i>
+                        <div>
+                            <strong>Comprehensive API Testing</strong>
+                            <p>Define and execute API tests with detailed request, response, and test results.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-cloud"></i>
+                        <div>
+                            <strong>Centralized Environment Management</strong>
+                            <p>Easily manage different environments (development, staging, production) for your API tests.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-exchange-alt"></i>
+                        <div>
+                            <strong>Flexible Variable Substitution</strong>
+                            <p>Use variables to make your tests dynamic and reusable across different environments and scenarios.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-file-code"></i>
+                        <div>
+                            <strong>Support for Diverse Payload Types</strong>
+                            <p>Test APIs with various data formats, including JSON, plain text, and form data.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-upload"></i>
+                        <div>
+                            <strong>File Upload Capabilities</strong>
+                            <p>Seamlessly test endpoints that require file uploads.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <strong>Powerful Mock Server</strong>
+                            <p>Simulate API responses for efficient development and testing, even when the actual API is unavailable.</p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-stream"></i>
+                        <div>
+                            <strong>Streamlined Workflow</strong>
+                            <p>Automate your API testing process, saving time and reducing manual effort.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

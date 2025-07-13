@@ -1,0 +1,192 @@
+/* Basic Reset & Body Styles */
+body {
+    margin: 0;
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #8A2BE2 0%, #0077B6 100%); /* Sweet purple to ocean blue gradient */
+    color: #fff;
+    text-align: center;
+    padding: 100px 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+}
+
+.hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E0E0E0 100%); /* White gradient for contrast */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.hero .tagline {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #8A2BE2; /* Adjust button color to match new hero (purple) */
+}
+
+.btn-primary:hover {
+    background-color: #e0e0e0;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Overview Section - Variation 2 */
+.overview-section {
+    background-color: #f0f8ff; /* Light blue background */
+    padding: 60px 0;
+    margin-bottom: 30px;
+    border-bottom: 5px solid #2575fc; /* A subtle border at the bottom */
+}
+
+.overview-section .overview-text {
+    font-size: 1.4em; /* Slightly larger font */
+    line-height: 1.8;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    color: #333;
+    font-weight: 500; /* Slightly bolder text */
+}
+
+/* Highlight Section */
+.highlight-section {
+    padding: 50px 0;
+    background-color: #eef4ff;
+    text-align: center;
+}
+
+.highlight-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+.highlight-item {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.highlight-item .icon {
+    font-size: 3em;
+    color: #8A2BE2; /* Solid color from gradient */
+    margin-bottom: 20px;
+}
+
+.highlight-item h3 {
+    font-size: 1.8em;
+    color: #8A2BE2; /* Solid color from gradient */
+    margin-bottom: 15px;
+}
+
+.highlight-item p {
+    font-size: 1.1em;
+    color: #555;
+}
+
+/* Features Section */
+.features-section {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.features-section h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5em;
+    background: linear-gradient(135deg, #8A2BE2 0%, #0077B6 100%); /* Gradient for h2 */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.features-list li {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center; /* Changed from flex-start to center */
+    font-size: 1.1em;
+    color: #555;
+}
+
+.features-list li i {
+    color: #8A2BE2; /* Changed to match the gradient color */
+    margin-right: 15px;
+    font-size: 1.5em;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.features-list li strong {
+    display: block; /* Make strong a block element for better spacing */
+    font-size: 1.2em;
+    color: #8A2BE2; /* Changed to match the gradient color */
+    margin-bottom: 5px; /* Space between heading and paragraph */
+}
+
+.features-list li p {
+    margin: 0; /* Remove default paragraph margin */
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #333;
+    color: #fff;
+    font-size: 0.9em;
+}

@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.148.1">
+    <meta name="description" content="Apify Documentation">
+<meta name="author" content="Apify">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>API Testing :: Apify Documentation</title>
+
+    
+    <link href="/css/nucleus.css?1752405002" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1752405002" rel="stylesheet">
+    <link href="/css/hybrid.css?1752405002" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1752405002" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1752405002" rel="stylesheet">
+    <link href="/css/auto-complete.css?1752405002" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1752405002" rel="stylesheet">
+    <link href="/css/theme.css?1752405002" rel="stylesheet">
+    <link href="/css/tabs.css?1752405002" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1752405002" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1752405002"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+<link href="http://localhost:1313/css/custom-doc.css" rel="stylesheet">
+  </head>
+  <body class="" data-url="/api-testing/">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a id="logo" href="/">
+    <span>Apify</span>
+</a>
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1752405002"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1752405002"></script>
+<script type="text/javascript">
+    
+        var baseurl = "http:\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1752405002"></script>
+
+    
+  </div>
+  
+    <section id="homelinks">
+      <ul>
+        <li>
+            <a class="padding" href='/'><i class='fas fa-home'></i> Home</a>
+        </li>
+      </ul>
+    </section>
+  
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/getting-started/" title="Getting Started" class="dd-item
+        
+        
+        
+        ">
+      <a href="/getting-started/" >
+          Getting Started
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/getting-started/installation/" title="Installation" class="dd-item ">
+        <a href="/getting-started/installation/">
+        Installation
+        <i class="fas fa-check read-icon"></i>
+        
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/command-reference/" title="Command Reference" class="dd-item
+        
+        
+        
+        ">
+      <a href="/command-reference/" >
+          Command Reference
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/project-initialization/" title="Project Initialization" class="dd-item
+        
+        
+        
+        ">
+      <a href="/project-initialization/" >
+          Project Initialization
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/variables/" title="Variables" class="dd-item
+        
+        
+        
+        ">
+      <a href="/variables/" >
+          Variables
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/api-testing/" title="API Testing" class="dd-item
+        
+        active
+        
+        ">
+      <a href="/api-testing/" style="background-color: #e0e0e0; color: #000; font-weight: bold;">
+          API Testing
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/test-command/" title="Test Command" class="dd-item
+        
+        
+        
+        ">
+      <a href="/test-command/" >
+          Test Command
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/mock-server/" title="Mock Server" class="dd-item
+        
+        
+        
+        ">
+      <a href="/mock-server/" >
+          Mock Server
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/examples/" title="Examples" class="dd-item
+        
+        
+        
+        ">
+      <a href="/examples/" >
+          Examples
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/troubleshooting/" title="Troubleshooting" class="dd-item
+        
+        
+        
+        ">
+      <a href="/troubleshooting/" >
+          Troubleshooting
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+    </li>
+  
+ 
+
+          
+        
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li>
+                  <a class="padding" href="https://github.com/apify/apify-doc"><i class='fab fa-github'></i> GitHub</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <p>Built with <a href="https://github.com/matcornic/hugo-theme-learn"><i class="fas fa-heart"></i></a> from <a href="https://getgrav.org">Grav</a> and <a href="https://gohugo.io/">Hugo</a></p>
+
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/apify/apify-doc/edit/master/content/api-testing/_index.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span id="toc-menu"><i class="fas fa-list-alt"></i></span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/'>Apify Documentation</a> > API Testing
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+                    <div class="progress">
+    <div class="wrapper">
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#create-request">Create Request</a></li>
+        <li><a href="#api-test-definition">API Test Definition</a></li>
+        <li><a href="#fields-explained">Fields Explained</a></li>
+        <li><a href="#call-command">Call Command</a></li>
+        <li><a href="#payload-types">Payload Types</a></li>
+        <li><a href="#file-uploads">File Uploads</a></li>
+        <li><a href="#test-assertions">Test Assertions</a></li>
+        <li><a href="#supported-assertion-types">Supported Assertion Types</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+    </div>
+</div>
+
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+        <div id="body-inner">
+          
+            <h1>
+              
+              API Testing
+            </h1>
+          
+
+        
+
+
+
+	<h3 id="create-request">Create Request</h3>
+<p>Creates a new API request definition interactively.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Description</th>
+          <th>Required</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>--file</code></td>
+          <td>The file path for the new API request definition</td>
+          <td>Yes</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>--force</code></td>
+          <td>Force overwrite if the file already exists</td>
+          <td>No</td>
+          <td>false</td>
+      </tr>
+  </tbody>
+</table>
+<p>The command will interactively prompt for all necessary information, including HTTP method, URI, headers, payload, and assertions.</p>
+<p>Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a new API request interactively</span>
+</span></span><span style="display:flex;"><span>dotnet run create request --file users.create
+</span></span></code></pre></div><h3 id="api-test-definition">API Test Definition</h3>
+<p>API tests are defined in JSON files with the following structure:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;User API Test&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;Tests the user endpoints&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Uri&#34;</span>: <span style="color:#e6db74">&#34;{{baseUrl}}/users/1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Method&#34;</span>: <span style="color:#e6db74">&#34;GET&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Headers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Accept&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Authorization&#34;</span>: <span style="color:#e6db74">&#34;Bearer {{token}}&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Payload&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;PayloadType&#34;</span>: <span style="color:#e6db74">&#34;none&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Files&#34;</span>: <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Tests&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Status code is valid&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;Checks if status code is 200&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;AssertType&#34;</span>: <span style="color:#e6db74">&#34;StatusCode&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ExpectedValue&#34;</span>: <span style="color:#e6db74">&#34;200&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Timeout&#34;</span>: <span style="color:#ae81ff">30000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Variables&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;customVar&#34;</span>: <span style="color:#e6db74">&#34;my-custom-value&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;Tags&#34;</span>: [<span style="color:#e6db74">&#34;users&#34;</span>, <span style="color:#e6db74">&#34;smoke&#34;</span>]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="fields-explained">Fields Explained</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Field</th>
+          <th>Type</th>
+          <th>Description</th>
+          <th>Required</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>Name</code></td>
+          <td>String</td>
+          <td>Name of the API test</td>
+          <td>Yes</td>
+      </tr>
+      <tr>
+          <td><code>Description</code></td>
+          <td>String</td>
+          <td>Description of the test</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Uri</code></td>
+          <td>String</td>
+          <td>The endpoint URI (supports variable substitution)</td>
+          <td>Yes</td>
+      </tr>
+      <tr>
+          <td><code>Method</code></td>
+          <td>String</td>
+          <td>HTTP method (GET, POST, PUT, DELETE, etc.)</td>
+          <td>Yes</td>
+      </tr>
+      <tr>
+          <td><code>Headers</code></td>
+          <td>Object</td>
+          <td>HTTP headers as key-value pairs</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Payload</code></td>
+          <td>String</td>
+          <td>The request body (can be JSON, text, etc.)</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>PayloadType</code></td>
+          <td>String</td>
+          <td>Type of payload (none, json, text, formData)</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Files</code></td>
+          <td>Array</td>
+          <td>Files to upload (for multipart/form-data)</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Tests</code></td>
+          <td>Array</td>
+          <td>Test assertions to validate the response</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Timeout</code></td>
+          <td>Number</td>
+          <td>Request timeout in milliseconds</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Variables</code></td>
+          <td>Object</td>
+          <td>Custom variables defined in the test file</td>
+          <td>No</td>
+      </tr>
+      <tr>
+          <td><code>Tags</code></td>
+          <td>Array</td>
+          <td>Tags for filtering tests</td>
+          <td>No</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="call-command">Call Command</h3>
+<p>Executes a single API test from a definition file.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Option</th>
+          <th>Description</th>
+          <th>Required</th>
+          <th>Default</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>file</code></td>
+          <td>API definition file to test (supports dot notation)</td>
+          <td>Yes</td>
+          <td>-</td>
+      </tr>
+      <tr>
+          <td><code>--verbose</code> or <code>-v</code></td>
+          <td>Display detailed output</td>
+          <td>No</td>
+          <td>false</td>
+      </tr>
+      <tr>
+          <td><code>--env</code> or <code>-e</code></td>
+          <td>Environment to use from the profile</td>
+          <td>No</td>
+          <td>Profile&rsquo;s default</td>
+      </tr>
+      <tr>
+          <td><code>--vars</code></td>
+          <td>Runtime variables for the configuration</td>
+          <td>No</td>
+          <td>-</td>
+      </tr>
+  </tbody>
+</table>
+<p>Examples:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run a single test using dot notation</span>
+</span></span><span style="display:flex;"><span>dotnet run call users.get
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run a test with a specific environment and runtime variables</span>
+</span></span><span style="display:flex;"><span>dotnet run call users.create --env Production --vars <span style="color:#e6db74">&#34;userId=123,role=admin&#34;</span>
+</span></span></code></pre></div><p>The <code>call</code> command supports simplified paths using dot notation:</p>
+<ul>
+<li><code>users.get</code> will run <code>.apify/users/get.json</code></li>
+<li><code>auth.login</code> will run <code>.apify/auth/login.json</code></li>
+</ul>
+<p>The <code>.json</code> extension is optional.</p>
+<h3 id="payload-types">Payload Types</h3>
+<p>Apify supports multiple payload types for flexibility in testing different types of API endpoints.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Payload Type</th>
+          <th>Description</th>
+          <th>Content-Type Header</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>none</code></td>
+          <td>No request body</td>
+          <td>None</td>
+      </tr>
+      <tr>
+          <td><code>json</code></td>
+          <td>JSON structured data</td>
+          <td>application/json</td>
+      </tr>
+      <tr>
+          <td><code>text</code></td>
+          <td>Plain text content</td>
+          <td>text/plain</td>
+      </tr>
+      <tr>
+          <td><code>formData</code></td>
+          <td>URL-encoded form data</td>
+          <td>application/x-wWw-form-urlencoded</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="file-uploads">File Uploads</h3>
+<p>Apify supports file uploads using multipart/form-data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#e6db74">&#34;Files&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> [
+</span></span><span style="display:flex;"><span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;Name&#34;</span>: <span style="color:#e6db74">&#34;Profile Picture&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;FieldName&#34;</span>: <span style="color:#e6db74">&#34;avatar&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;FilePath&#34;</span>: <span style="color:#e6db74">&#34;./images/profile.jpg&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;ContentType&#34;</span>: <span style="color:#e6db74">&#34;image/jpeg&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="test-assertions">Test Assertions</h3>
+<p>Apify provides comprehensive assertion capabilities to validate API responses.</p>
+<h3 id="supported-assertion-types">Supported Assertion Types</h3>
+<table>
+  <thead>
+      <tr>
+          <th>Assertion Type</th>
+          <th>Description</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><code>StatusCode</code></td>
+          <td>Validates the HTTP status code</td>
+      </tr>
+      <tr>
+          <td><code>ContainsProperty</code></td>
+          <td>Checks if response JSON contains a specific property</td>
+      </tr>
+      <tr>
+          <td><code>HeaderContains</code></td>
+          <td>Validates a response header&rsquo;s value</td>
+      </tr>
+      <tr>
+          <td><code>ResponseTimeBelow</code></td>
+          <td>Verifies response time is below a threshold</td>
+      </tr>
+      <tr>
+          <td><code>Equal</code></td>
+          <td>Checks if a JSON property equals a specific value</td>
+      </tr>
+      <tr>
+          <td><code>IsArray</code></td>
+          <td>Checks if a JSON property is an array</td>
+      </tr>
+      <tr>
+          <td><code>ArrayNotEmpty</code></td>
+          <td>Verifies a JSON array is not empty</td>
+      </tr>
+  </tbody>
+</table>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+        </div>
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/variables/" title="Variables"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/test-command/" title="Test Command" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1752405002"></script>
+    <script src="/js/perfect-scrollbar.min.js?1752405002"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1752405002"></script>
+    <script src="/js/jquery.sticky.js?1752405002"></script>
+    <script src="/js/featherlight.min.js?1752405002"></script>
+    <script src="/js/highlight.pack.js?1752405002"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1752405002"></script>
+    <script src="/js/learn.js?1752405002"></script>
+    <script src="/js/hugo-learn.js?1752405002"></script>
+    
+        
+            <script src="/mermaid/mermaid.js?1752405002"></script>
+        
+        <script>
+            mermaid.initialize({ startOnLoad: true });
+        </script>
+    
+    
+
+  </body>
+</html>
