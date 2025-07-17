@@ -40,7 +40,7 @@
 }
 body {
     background: #fff;
-    color: #777;
+    color: #242629;
 }
 body #chapter h1 {
     font-size: 3.5rem;
@@ -56,10 +56,10 @@ body #chapter h1 {
     }
 }
 a {
-    color: #00bdf3;
+    color: #c29907;
 }
 a:hover {
-    color: #0082a7;
+    color: #816913;
 }
 pre {
     position: relative;
@@ -102,10 +102,10 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     box-shadow: inset 0 1px 3px rgba(0,0,0,.06),0 0 5px rgba(0,169,218,.7)
 }
 #header-wrapper {
-    background: #8451a1;
-    color: #fff;
+    background: #242629;
+    color: #f1d778;
     text-align: center;
-    border-bottom: 4px solid #9c6fb6;
+    border-bottom: 4px solid #303235;
     padding: 1rem;
 }
 #header a {
@@ -173,7 +173,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     }
 }
 #sidebar {
-    background-color: #322A38;
+    background-color: #2d2d2d;
     position: fixed;
     top: 0;
     width: 300px;
@@ -186,7 +186,7 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     color: #ccc;
 }
 #sidebar a:hover {
-    color: #e6e6e6;
+    color: #f1d778;
 }
 #sidebar a.subtitle {
     color: rgba(204, 204, 204, 0.6);
@@ -217,15 +217,15 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     font-size: 80%;
 }
 #sidebar h5.parent a {
-    background: #201b24;
-    color: #d9d9d9 !important;
+    background: #242629;
+    color: #f1d778 !important;
 }
 #sidebar h5.active a {
-    background: #fff;
-    color: #777 !important;
+    background: #f1d778;
+    color: #242629 !important;
 }
 #sidebar h5.active i {
-    color: #777 !important;
+    color: #242629 !important;
 }
 #sidebar h5 + ul.topics {
     display: none;
@@ -276,15 +276,15 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     margin-top: 9px;
 }
 #sidebar ul.topics > li.parent, #sidebar ul.topics > li.active {
-    background: #251f29;
+    background: #242629;
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
     padding-right: 1rem;
 }
 #sidebar ul li.active > a {
-    background: #fff;
-    color: #777 !important;
+    background: #f1d778;
+    color: #242629 !important;
     margin-left: -1rem;
     margin-right: -1rem;
     padding-left: 1rem;
@@ -313,10 +313,19 @@ textarea:focus, input[type="email"]:focus, input[type="number"]:focus, input[typ
     color: #9c6fb6;
     display: inline;
 }
+
+#sidebar ul li.visited.active > a .read-icon {
+    color: #2d2d2e;
+    display: inline;
+}
+
 #sidebar ul li li {
     padding-left: 1rem;
     text-indent: 0.2rem;
 }
+
+
+
 #main {
     background: #f7f7f7;
     margin: 0 0 1.563rem 0;
@@ -630,9 +639,9 @@ code, kbd, pre, samp {
 code {
     border-radius: 2px;
     white-space: nowrap;
-    color: #5e5e5e;
-    background: #FFF7DD;
-    border: 1px solid #fbf0cb;
+    color: #242629;
+    background: #fae7a7;
+    border: 1px solid #e0c66c;
     padding: 0px 2px;
 }
 code + .copy-to-clipboard {
@@ -646,13 +655,13 @@ code + .copy-to-clipboard {
 pre {
     padding: 1rem;
     margin: 2rem 0;
-    background: #282c34;
+    background: #2d2d2d;
     border: 0;
     border-radius: 2px;
     line-height: 1.15;
 }
 pre code {
-    color: whitesmoke;
+    color: #f1f1f1;
     background: inherit;
     white-space: inherit;
     border: 0;
@@ -988,7 +997,7 @@ td {
     background: #34495E;
 }
 #top-bar {
-    background: #F6F6F6;
+    background: #dddcdc;
     border-radius: 2px;
     padding: 0 1rem;
     height: 0;
@@ -1116,7 +1125,7 @@ pre .copy-to-clipboard:hover {
     text-align: right;
 }
 #sidebar ul li.visited > a .read-icon {
-    color: #00bdf3;
+    color: #f1d778;
     display: inline;
 }
 

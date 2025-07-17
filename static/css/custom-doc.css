@@ -1,3 +1,79 @@
 #sidebar #header-wrapper {
-    background: linear-gradient(135deg, #8A2BE2 0%, #0077B6 100%);
+    background: linear-gradient(135deg, #242629 0%, #303235 100%);
+}
+
+body {
+    color: #242629 !important; /* Override theme default */
+    font-family: 'Work Sans', sans-serif !important; /* Override theme default */
+    background-color: #fff; /* Ensure white background as per homepage */
+}
+
+#body a.highlight:after {
+    background-color: #f1d778 !important; /* Homepage accent color */
+}
+
+.anchor {
+    color: #f1d778 !important; /* Homepage accent color */
+}
+
+/* Button styles from homepage.css */
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #f1d778;
+    color: #242629;
+}
+
+.btn-primary:hover {
+    background-color: #e0c66c;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #f1d778;
+    border: 2px solid #f1d778;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(241, 215, 120, 0.1);
+}
+
+/* Override default theme buttons with homepage styles */
+.btn-default {
+    background-color: #f1d778 !important;
+    color: #242629 !important;
+    border: none !important;
+}
+
+.btn-default:hover {
+    background-color: #e0c66c !important;
+    color: #242629 !important;
+}
+
+#logo {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.searchbox {
+    background-color: #242629;
+    color: #242629;
+    border: 1px solid #f1d778;
+}
+
+#homelinks {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #434343;
+    border-bottom: 4px solid #f1d778;
+    padding: 7px;
 }
