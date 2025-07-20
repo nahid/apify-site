@@ -19,42 +19,68 @@ For a quick installation via your command line, use the following platform-speci
 ```bash
 # Download the appropriate zip file
 curl -L [DOWNLOAD_URL] -o apify.zip
+```
 
-# Extract the binary
+Extract the downloaded zip
+
+```bash
 unzip apify.zip
 # This will extract 'apify' binary (and potentially other files) to the current directory.
 # Adjust 'apify' if the extracted binary has a different name (e.g., apify-linux-x64)
+```
 
-# Make the binary executable and move it to /usr/local/bin
+Make the binary executable and move it to /usr/local/bin
+
+```bash
 sudo chmod a+x apify
 sudo mv apify /usr/local/bin/
+```
 
-# For macOS users: Remove Quarantine Attribute (if downloaded via browser)
+> For macOS users: Remove Quarantine Attribute (if downloaded via browser)
+
+```bash
 xattr -d com.apple.quarantine /usr/local/bin/apify
+```
 
-# Verify installation
+Verify installation
+
+```bash
 apify --version
 ```
 
 #### Windows (PowerShell)
 
+Define download URL and installation path
+
 ```powershell
-# Define download URL and installation path
 $downloadUrl = "[DOWNLOAD_URL]"
 $installPath = "$env:ProgramFiles\Apify"
+```
 
-# Create directory
+Create directory
+
+```powershell
 New-Item -ItemType Directory -Force -Path $installPath
+```
 
-# Download and extract
+Download and extract
+
+```powershell
 Invoke-WebRequest -Uri $downloadUrl -OutFile "$env:TEMP\apify.zip"
 Expand-Archive -Path "$env:TEMP\apify.zip" -DestinationPath $installPath -Force
+```
 
-# Add to PATH (for current session, add permanently via System Properties for persistence)
+Add to PATH (for current session, add permanently via System Properties for persistence)
+
+```powershell
 $env:Path += ";$installPath"
+```
 
-# Verify installation
+Verify installation
+
+```powershell
 apify --version
+
 ```
 
 Alternatively, you can build Apify from source:
@@ -75,7 +101,7 @@ To build the Native AOT version:
 ./build-native.sh
 
 # Or manually
-dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishAot=true
+dotnet publish -c Release -r osx-x64 --self-contained
 ```
 
 The resulting executable will be located at:
