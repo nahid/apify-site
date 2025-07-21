@@ -17,19 +17,42 @@ For a quick installation via your command line, use the following platform-speci
 #### Linux & macOS
 
 ```bash
-# Download the appropriate zip file
-curl -L [DOWNLOAD_URL] -o apify
+# Download the appropriate zip file and extract it
+curl -L [DOWNLOAD_URL] -o apify.zip
+unzip apify.zip
+```
 
+This will extract the `apify` binary (and possibly other files) to your current directory.
 
-# This will download 'apify' binary (and potentially other files) to the current directory.
-
+```bash
 # Make the binary executable and move it to /usr/local/bin
-sudo chmod a+x apify
+chmod a+x apify
 sudo mv apify /usr/local/bin/
+```
 
+```bash
 # Verify installation
 apify --version
 ```
+
+##### Resolving macOS Security Warnings
+
+On macOS, you may see a security warning when running the binary for the first time (e.g., "cannot be opened because the developer cannot be verified"). To allow execution:
+
+1. Attempt to run `apify` from the terminal. If blocked, note the warning.
+2. Open **System Settings** > **Privacy & Security**.
+3. Scroll down to the "Security" section. You should see a message about `apify` being blocked.
+4. Click **Allow Anyway**.
+5. Run `apify` again from the terminal. If prompted, click **Open** in the dialog.
+
+Alternatively, you can remove the quarantine attribute via terminal:
+
+```bash
+sudo xattr -rd com.apple.quarantine /usr/local/bin/apify
+```
+
+This will allow the binary to run without further security prompts.
+
 
 #### Windows (PowerShell)
 
