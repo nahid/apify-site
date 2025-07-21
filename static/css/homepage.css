@@ -261,6 +261,7 @@ body {
     padding: 20px;
     white-space: pre-wrap;
     word-wrap: break-word;
+    word-break: break-all;
     font-family: 'Inconsolata', monospace;
     margin: 0;
     height: 460px;
@@ -273,4 +274,82 @@ footer {
     background-color: #242629;
     color: #f1d778;
     font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .schema-viewer {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+
+    .schema-display pre {
+        height: auto;
+        max-height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.8em;
+    }
+
+    .hero .tagline {
+        font-size: 1.2em;
+    }
+
+    .highlight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .features-list li i {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-logo {
+        height: 180px;
+    }
+
+    .hero h1 {
+        font-size: 2.2em;
+    }
+
+p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+
+    .overview-section .overview-text {
+        font-size: 1.1em;
+    }
+
+    .highlight-item h3 {
+        font-size: 1.5em;
+    }
+
+    .features-section h2,
+    .code-example-section h2 {
+        font-size: 2em;
+    }
 }
