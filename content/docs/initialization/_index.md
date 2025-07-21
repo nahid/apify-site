@@ -1,6 +1,6 @@
 ---
 title: "Initialization"
-weight: 3
+weight: 4
 ---
 
 Initializes a new API testing project in the current directory. To start using Apify in your project, navigate to your project's root directory and run:

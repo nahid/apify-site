@@ -1,6 +1,6 @@
 ---
 title: "Examples"
-weight: 4
+weight: 9
 ---
 
 ### Example 1: Testing and Mocking a User API

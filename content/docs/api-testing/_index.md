@@ -9,7 +9,7 @@ Apify provides comprehensive capabilities for defining and running detailed API 
 
 - **Multiple Request Methods**: Support for GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS.
 - **Rich Payload Types**: JSON, Text, Form Data.
-- **File Upload Support**: Test multipart/form-data requests with file uploads.
+- **File Upload Support**: Test multipart/form-data and raw binary requests with file uploads.
 - **Detailed Assertions**: Validate response status, headers, body content (JSON properties, arrays, values), and response time.
 
 ### Create Request
@@ -17,26 +17,47 @@ Apify provides comprehensive capabilities for defining and running detailed API 
 Creates a new API test definition file interactively.
 
 ```bash
-apify create:request <file> [--force]
+apify create:request <file> [--prompt] [--force]
 ```
 - `<file>`: (Required) The file path for the new API request definition (e.g., `users.all` becomes `.apify/users/all.json`). The `.json` extension is added automatically.
 - `--force`: Overwrite if the file already exists.
 - Prompts for request name, HTTP method, URI, headers, payload, and basic assertions.
 
+### Example
+
+```bash
+apify create:request users.all --prompt
+```
+
+This command will create a new API test definition file at `.apify/users/all.json` with an interactive prompt to fill in the details. 
+
+#### Command Arguments
+- **`<file>`**: The path where the API test definition will be created.
+
+#### Command Options
+- **`--name`**: Specify a custom name for the request (e.g., `--name "Get All Users"`).
+- **`--method`**: Specify the HTTP method (e.g., `--method GET`).
+- **`--url`**: Specify the request URL (e.g., `--url "{{env.baseUrl}}/users"`).
+- **`--prompt`**: Use interactive prompts to fill in the request details.
+- **`--force`**: Overwrite existing files without confirmation.
+- **`--debug`**: Enable debug mode for more detailed output during creation.
+
+
+
 ### API Test Definition
 
-API tests are defined in JSON files (e.g., `.apify/users/get-users.json`).
+API tests are defined in JSON files (e.g., `.apify/users/all.json`).
 
 Structure:
 ```json
 {
   "Name": "Get All Users",
   "Description": "Fetches the list of all users",
-  "Url": "{{baseUrl}}/users?page={{defaultPage}}",
+  "Url": "{{env.baseUrl}}/users?page={{defaultPage}}",
   "Method": "GET",
   "Headers": {
     "Accept": "application/json",
-    "X-Api-Key": "{{apiKey}}"
+    "X-Api-Key": "{{env.apiKey}}"
   },
   "Body": null,
   "PayloadType": "none", // "json", "text", "formData"
@@ -49,10 +70,6 @@ Structure:
     {
       "Title": "Status code is 200 OK",
       "Case": "Assert.Response.StatusCodeIs(200)"
-    },
-    {
-      "Title": "Response body is an array",
-      "Case": "Assert.Response.Json.data.Type == JTokenType.Array"
     }
   ]
 }
@@ -60,12 +77,19 @@ Structure:
 
 ### Fields Explained
 
-- **`Name`, `Description`**: Metadata for the test.
+- **`Name`**: Name of the API test (e.g., "Get All Users").
+- **`Description`**: Optional description of the test.
 - **`Url`**: The endpoint URL (supports variable substitution).
 - **`Method`**: HTTP method (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS).
 - **`Headers`**: HTTP headers as key-value pairs.
+- **`PayloadType`**: Type of payload (`none`, `json`, `text`, `formData`, `multipart`, `binary`).
 - **`Body`**: The request body (for POST, PUT, PATCH). Can be JSON, text, etc.
-- **`PayloadType`**: Type of payload (`none`, `json`, `text`, `formData`).
+  - **`Json`**: JSON object for `json` payload type.
+  - **`Text`**: Plain text for `text` payload type.
+  - **`FormData`**: URL-encoded form data for `formData`
+  - **`Multipart`**: For `multipart/form-data`, specify files in the `Files` array.
+  - **`Binary`**: For raw binary data, specify the file path.
+  - **`Binary`**: For raw binary data, specify the file path.
 - **`Timeout`**: Request timeout in milliseconds (optional).
 - **`Tags`**: Array of strings for categorizing and filtering tests (optional).
 - **`Variables`**: Key-value pairs specific to this request (highest precedence).

@@ -18,70 +18,49 @@ For a quick installation via your command line, use the following platform-speci
 
 ```bash
 # Download the appropriate zip file
-curl -L [DOWNLOAD_URL] -o apify.zip
-```
+curl -L [DOWNLOAD_URL] -o apify
 
-Extract the downloaded zip
 
-```bash
-unzip apify.zip
-# This will extract 'apify' binary (and potentially other files) to the current directory.
-# Adjust 'apify' if the extracted binary has a different name (e.g., apify-linux-x64)
-```
+# This will download 'apify' binary (and potentially other files) to the current directory.
 
-Make the binary executable and move it to /usr/local/bin
-
-```bash
+# Make the binary executable and move it to /usr/local/bin
 sudo chmod a+x apify
 sudo mv apify /usr/local/bin/
-```
 
-> For macOS users: Remove Quarantine Attribute (if downloaded via browser)
-
-```bash
-xattr -d com.apple.quarantine /usr/local/bin/apify
-```
-
-Verify installation
-
-```bash
+# Verify installation
 apify --version
 ```
 
 #### Windows (PowerShell)
 
-Define download URL and installation path
+1. Download the appropriate `.zip` file for Windows from the [latest release](https://github.com/nahid/apify/releases/latest) and extract it using File Explorer or a tool like WinRAR. Inside the extracted folder, you'll find `apify.exe`.
 
-```powershell
-$downloadUrl = "[DOWNLOAD_URL]"
-$installPath = "$env:ProgramFiles\Apify"
-```
+2. Create a new folder for Apify in `Program Files` (run PowerShell as Administrator):
 
-Create directory
+    ```powershell
+    New-Item -ItemType Directory -Force -Path "$env:ProgramFiles\Apify"
+    ```
 
-```powershell
-New-Item -ItemType Directory -Force -Path $installPath
-```
+3. Move `apify.exe` to the new folder:
 
-Download and extract
+    ```powershell
+    Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify"
+    ```
 
-```powershell
-Invoke-WebRequest -Uri $downloadUrl -OutFile "$env:TEMP\apify.zip"
-Expand-Archive -Path "$env:TEMP\apify.zip" -DestinationPath $installPath -Force
-```
+4. Add Apify to your user PATH environment variable:
 
-Add to PATH (for current session, add permanently via System Properties for persistence)
+    ```powershell
+    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Program Files\Apify", "User")
+    ```
 
-```powershell
-$env:Path += ";$installPath"
-```
+5. Restart your terminal, then verify the installation:
 
-Verify installation
+    ```powershell
+    apify --version
+    ```
 
-```powershell
-apify --version
+> Ensure you run PowerShell as Administrator for steps that modify `Program Files`.
 
-```
 
 Alternatively, you can build Apify from source:
 
@@ -101,7 +80,7 @@ To build the Native AOT version:
 ./build-native.sh
 
 # Or manually
-dotnet publish -c Release -r osx-x64 --self-contained
+dotnet publish -c Release -r linux-x64 --self-contained true -p:PublishAot=true
 ```
 
 The resulting executable will be located at:

@@ -1,6 +1,6 @@
 ---
 title: "Variables"
-weight: 5
+weight: 3
 ---
 
 Apify provides a powerful variable system that supports template substitution in API definitions and mock responses. Variables can be defined at multiple levels with clear precedence:
