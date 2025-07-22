@@ -3,78 +3,92 @@ title: "Command Reference"
 weight: 3
 ---
 
-Apify commands are run as `apify <command> [subcommand] [options]` if installed globally, or `dotnet run -- <command> [subcommand] [options]` if run from the project directory.
+Apify CLI provides commands to help you create, manage, and test API projects. You can run commands globally as `apify <command> [options]`
+
+## Commands
 
 ### `apify init`
-Initializes a new API testing project in the current directory.
+
+Set up a new API testing project in your current directory.
 
 ```bash
 apify init [--force]
 ```
-- `--force`: Overwrite existing `apify-config.json` and `.apify` directory if they exist.
-- Prompts for project name, default environment name, and other environments to create.
-- Creates `apify-config.json`, `.apify/` directory with sample test and mock files.
+
+- `--force`: Overwrite existing `apify-config.json` and `.apify` directory if present.
+- Prompts for project and environment details.
+- Generates `apify-config.json` and a `.apify/` directory with sample files.
 
 ### `apify create:request`
-Interactively creates a new API test definition file.
+
+Create a new API test definition interactively.
 
 ```bash
 apify create:request <file> [--force]
 ```
-- `<file>`: (Required) The file path for the new API request definition (e.g., `users.all` becomes `.apify/users/all.json`). The `.json` extension is added automatically.
-- `--force`: Overwrite if the file already exists.
-- Prompts for request name, HTTP method, URI, headers, payload, and basic assertions.
+
+- `<file>`: (Required) Path for the new API request definition (e.g., `users.all` → `.apify/users/all.json`).
+- `--force`: Overwrite if the file exists.
+- Guided prompts for request details and assertions.
 
 ### `apify create:mock`
-Interactively creates a new mock API definition file.
+
+Create a new mock API definition interactively.
 
 ```bash
 apify create:mock <file> [--force]
 ```
-- `<file>`: (Required) The file path for the new mock API definition (e.g., `users.get` becomes `.apify/users/get.mock.json`). The `.mock.json` extension is added automatically.
-- `--force`: Overwrite if the file already exists.
-- Prompts for mock name, HTTP method, endpoint path, status code, content type, response body, headers, and conditional responses.
+
+- `<file>`: (Required) Path for the new mock definition (e.g., `users.get` → `.apify/users/get.mock.json`).
+- `--force`: Overwrite if the file exists.
+- Guided prompts for mock details, responses, and conditions.
 
 ### `apify call`
-Executes an API test from a specified definition file.
+
+Run an API test from a definition file.
 
 ```bash
-apify call <file> [--env <environment_name>] [--verbose]
+apify call <file> [--env <environment>] [--verbose]
 ```
-- `<file>`: (Required) An API definition file path (e.g., `users/all.json`). Dot notation like `users.all` is also supported.
-- `--env <environment_name>`: Specifies the environment to use (e.g., "Production"). Uses default from `apify-config.json` if not set.
-- `--verbose` or `-v`: Displays detailed output, including request and response bodies.
+
+- `<file>`: (Required) API definition file (e.g., `users/all.json` or `users.all`).
+- `--env <environment>`: Specify environment (uses default if omitted).
+- `--verbose`, `-v`: Show detailed request/response output.
 
 ### `apify tests`
-Runs all API tests found in the `.apify` directory and its subdirectories.
+
+Run all API tests in the `.apify` directory.
 
 ```bash
-apify tests [--env <environment_name>] [--tag <tag_name>] [--verbose]
+apify tests [--env <environment>] [--tag <tag>] [--verbose]
 ```
-- `--env <environment_name>`: Specifies the environment.
-- `--tag <tag_name>`: Filters and runs only tests that have the specified tag in their definition.
-- `--verbose` or `-v`: Displays detailed output.
-- Shows visual progress indicators and a summary at the end.
+
+- `--env <environment>`: Specify environment.
+- `--tag <tag>`: Run only tests with the given tag.
+- `--verbose`, `-v`: Show detailed output.
+- Displays progress and summary.
 
 ### `apify server:mock`
-Starts a local API mock server using mock definition files.
+
+Start a local mock server using your mock definitions.
 
 ```bash
-apify server:mock [--port <port_number>] [--directory <path_to_mocks>] [--verbose]
+apify server:mock [--port <port>] [--directory <mocks_dir>] [--verbose]
 ```
-- `--port <port_number>`: Port for the mock server (default: from `apify-config.json` or 1988).
-- `--directory <path_to_mocks>`: Directory containing mock definition files (default: `.apify`).
-- `--verbose` or `-v`: Enable verbose logging for the mock server.
-- Reads configuration from the `MockServer` block in `apify-config.json` but command-line options take precedence.
+
+- `--port <port>`: Port for the server (default: from config or 1988).
+- `--directory <mocks_dir>`: Directory with mock files (default: `.apify`).
+- `--verbose`, `-v`: Enable verbose logging.
+- Reads settings from `apify-config.json` (`MockServer` block); CLI options override config.
 
 ### `apify list-env`
-Lists all available environments and their variables from `apify-config.json`.
+
+Show all environments and their variables from `apify-config.json`.
 
 ```bash
 apify list-env
 ```
 
-### Global Options
-These options can be used with most commands.
+## Global Options
 
-- `--debug`: Show detailed debug output, including stack traces and internal logging. Useful for troubleshooting Apify itself.
+- `--debug`: Show debug output, including stack traces and internal logs. Useful for troubleshooting.

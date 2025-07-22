@@ -3,28 +3,39 @@ title: "Core Concepts"
 weight: 2
 ---
 
-### Project Initialization (`apify init`)
+## Overview
 
-To start using Apify in your project, navigate to your project's root directory and run:
+Apify provides a robust framework for defining, running, and mocking API tests in your projects. This guide covers the foundational concepts, including project setup, configuration, test definitions, and mock API responses.
+
+---
+
+### 1. Project Initialization
+
+Start by initializing your project with Apify:
 
 ```bash
 apify init
 ```
 
-This command interactively prompts for:
-- Project Name
-- Default Environment Name (e.g., "Development")
-- Additional environments (e.g., "Staging,Production")
+This command will guide you through:
 
-It creates:
-- `apify-config.json`: The main configuration file.
-- `.apify/`: A directory to store your API test definitions (`.json`) and mock definitions (`.mock.json`).
-- Sample API test and mock definition files within `.apify/` and `.apify/mocks/` respectively.
-- A `MockServer` configuration block in `apify-config.json`.
+- Naming your project
+- Setting a default environment (e.g., "Development")
+- Adding additional environments (e.g., "Staging", "Production")
 
-### Configuration (`apify-config.json`)
+After initialization, your project will include:
 
-This file stores project-level settings, environments, and mock server configuration.
+- `apify-config.json`: Central configuration for environments, variables, and mock server.
+- `.apify/`: Directory for API test definitions (`.json`) and mock definitions (`.mock.json`).
+- Sample test and mock files to help you get started.
+
+---
+
+### 2. Configuration (`apify-config.json`)
+
+This JSON file defines global project settings, environments, and mock server options.
+
+**Example:**
 
 ```json
 {
@@ -37,7 +48,6 @@ This file stores project-level settings, environments, and mock server configura
   "Environments": [
     {
       "Name": "Development",
-      "Description": "Development environment specific variables",
       "Variables": {
         "baseUrl": "https://dev-api.myproject.com",
         "apiKey": "dev-secret-key"
@@ -45,7 +55,6 @@ This file stores project-level settings, environments, and mock server configura
     },
     {
       "Name": "Production",
-      "Description": "Production environment specific variables",
       "Variables": {
         "baseUrl": "https://api.myproject.com",
         "apiKey": "prod-secret-key"
@@ -64,23 +73,22 @@ This file stores project-level settings, environments, and mock server configura
 }
 ```
 
-- **`Name`, `Description`**: Project metadata.
-- **`DefaultEnvironment`**: The environment used if `--env` is not specified.
-- **`Variables` (Project-Level)**: Key-value pairs available across all tests and environments unless overridden.
-- **`Environments`**: An array of environment objects.
-    - **`Name`**: Unique name for the environment (e.g., "Development", "Staging").
-    - **`Variables`**: Key-value pairs specific to this environment. These override project-level variables.
-- **`MockServer`**: Configuration for the mock server.
-    - **`Port`**: Port for the mock server.
-    - **`Verbose`**: Enable verbose logging for the mock server.
-    - **`EnableCors`**: Enable CORS headers (defaults to allow all).
-    - **`DefaultHeaders`**: Headers to be added to all mock responses.
+**Key Sections:**
 
-### API Test Definitions (`.json`)
+- **Name/Description**: Project metadata.
+- **DefaultEnvironment**: Used if `--env` is not specified.
+- **Variables**: Project-wide variables, overridable by environments or requests.
+- **Environments**: Define environment-specific variables.
+- **MockServer**: Configure the built-in mock server.
 
-API tests are defined in JSON files (e.g., `.apify/users/get-users.json`).
+---
 
-Structure:
+### 3. API Test Definitions
+
+API tests are stored as JSON files in `.apify/` (e.g., `.apify/users/get-users.json`).
+
+**Structure:**
+
 ```json
 {
   "Name": "Get All Users",
@@ -91,45 +99,40 @@ Structure:
     "Accept": "application/json",
     "X-Api-Key": "{{apiKey}}"
   },
-  "Body": null,
-  "PayloadType": "none", // "json", "text", "formData"
-  "Timeout": 30000, // Optional, in milliseconds
-  "Tags": ["users", "smoke"], // Optional, for filtering tests
-  "Variables": { // Request-specific variables (highest precedence)
+  "Variables": {
     "defaultPage": "1"
   },
   "Tests": [
     {
       "Title": "Status code is 200 OK",
       "Case": "Assert.Response.StatusCodeIs(200)"
-    },
-    {
-      "Title": "Response body is an array",
-      "Case": "Assert.Response.Json.data.Type == JTokenType.Array"
     }
   ]
 }
 ```
 
-- **`Variables` (Request-Level)**: Override environment and project variables.
-- **`Tags`**: Used for filtering tests with `apify tests --tag <tagname>`.
-- **`Tests` (Assertions)**: A list of assertion objects.
-    - **`Title`**: A descriptive name for the assertion.
-    - **`Case`**: A C# expression to be evaluated. The expression should return a boolean value. You can use the `Assert` object and its methods to perform assertions.
+**Concepts:**
 
-### Mock API Definitions (`.mock.json`)
+- **Variables**: Request-level variables override environment/project variables.
+- **Tags**: (Optional) For filtering tests.
+- **Tests**: Each assertion includes a title and a C#-like expression using the `Assert` object.
 
-Mock APIs are defined in `.mock.json` files (e.g., `.apify/mocks/users/get-user-by-id.mock.json`).
+---
 
-Structure:
+### 4. Mock API Definitions
+
+Mocks are defined in `.mock.json` files under `.apify/mocks/` (e.g., `.apify/mocks/users/get-user-by-id.mock.json`).
+
+**Structure:**
+
 ```json
 {
   "Name": "Mock User by ID",
   "Method": "GET",
-  "Endpoint": "/api/users/:id", // Path parameters with :param or {param}
+  "Endpoint": "/api/users/:id",
   "Responses": [
     {
-      "Condition": "path.id == \"1\"", // C#-like condition
+      "Condition": "path.id == \"1\"",
       "StatusCode": 200,
       "Headers": {
         "X-Source": "Mock-Conditional-User1"
@@ -143,27 +146,7 @@ Structure:
       }
     },
     {
-      "Condition": "query.type == \"admin\" && header.X-Admin-Token == \"SUPER_SECRET\"",
-      "StatusCode": 200,
-      "ResponseTemplate": {
-        "id": "{{path.id}}",
-        "name": "Admin User (Mocked)",
-        "email": "admin.mock@example.com",
-        "role": "admin",
-        "token_used": "{{header.X-Admin-Token}}",
-        "uuid": "{{expr|> Faker.Random.Uuid()}}"
-      }
-    },
-    {
-      "Condition": "body.status == \"pending\"", // Example for POST/PUT
-      "StatusCode": 202,
-      "ResponseTemplate": {
-        "message": "Request for user {{path.id}} with status 'pending' accepted.",
-        "received_payload": "{{body}}" // Full request body
-      }
-    },
-    {
-      "Condition": "default", // Default response if no other conditions match
+      "Condition": "default",
       "StatusCode": 404,
       "ResponseTemplate": {
         "error": "User not found",
@@ -174,25 +157,29 @@ Structure:
 }
 ```
 
-- **`Endpoint`**: The URL path for the mock. Supports path parameters like `/users/:id` or `/users/{id}`.
-- **`Responses`**: An array of conditional response objects. They are evaluated in order.
-    - **`Condition`**: A C#-like expression to determine if this response should be used.
-        - Access request data:
-            - `path.paramName` (e.g., `path.id`)
-            - `query.paramName` (e.g., `query.page`)
-            - `headers.HeaderName` (e.g., `headers.Authorization`, case-insensitive)
-            - `body.fieldName` (e.g., `body.username`, for JSON bodies)
-        - `default` can be used for a default fallback response.
-    - **`StatusCode`**: The HTTP status code to return.
-    - **`Headers`**: An object of response headers.
-    - **`ResponseTemplate`**: The body of the response. Can be a JSON object or a string.
-        - **Template Variables**:
-            - `{{path.paramName}}`: Value of a path parameter.
-            - `{{query.paramName}}`: Value of a query parameter.
-            - `{{headers.HeaderName}}`: Value of a request header (case-insensitive).
-            - `{{body.fieldName}}`: Value of a field from the JSON request body.
-            - `{{body}}`: The full raw request body (string).
-            - `{{expr|> Faker.Random.Int(min,max)}}`: A random integer between min and max (inclusive). E.g., `{{expr|> Faker.Random.Int(1,100)}}`.
-            - `{{expr|> Faker.Random.Uuid()}}`: A random UUID.
-            - `{{expr|> Faker.Date.Recent()}}`: A recent date.
-            - Any environment or project variable (e.g., `{{baseUrl}}`).
+**Key Points:**
+
+- **Endpoint**: Supports path parameters (`:id` or `{id}`).
+- **Responses**: Evaluated in order; first matching condition is used.
+  - **Condition**: C#-like expression using request data (`path`, `query`, `headers`, `body`).
+  - **ResponseTemplate**: Supports template variables for dynamic responses, including random data via Faker.
+
+---
+
+### 5. Variable Resolution
+
+Variables are resolved in the following order (highest to lowest precedence):
+
+1. Request-level (`Variables` in test definition)
+2. Environment-level (`Variables` in environment)
+3. Project-level (`Variables` in config)
+
+---
+
+### 6. Mock Server
+
+The built-in mock server can be started using your configuration. It serves mock responses based on your `.mock.json` files, supporting dynamic templating and conditional logic.
+
+---
+
+For more advanced usage, see the full documentation on test assertions, environment management, and mock server customization.
