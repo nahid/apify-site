@@ -89,7 +89,7 @@ _(\*) Required fields_
   - **`ShowResponse`**: Show response details in the console.
   - **`ShowOnlyResponse`**: Show only response details in the console.
 - **`Authorization`** - (optional): Global authorization settings.
-  - **`Type`**: Type of authorization (e.g., "Bearer", "Basic").
+  - **`Type`**: Type of authorization (e.g., "bearer", "basic", "apiKey).
   - **`Token`**: Authorization token or credentials.
 - **`Environments`**: An array of environment objects.
   - **`Name`**: Unique name for the environment (e.g., "Development", "Staging").

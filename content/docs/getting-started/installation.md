@@ -26,7 +26,8 @@ This will extract the `apify` binary (and possibly other files) to your current 
 
 ```bash
 # Make the binary executable and move it to /usr/local/bin
-chmod a+x apify
+cd apify/
+sudo chmod a+x apify
 sudo mv apify /usr/local/bin/
 ```
 
@@ -53,6 +54,11 @@ sudo xattr -rd com.apple.quarantine /usr/local/bin/apify
 
 This will allow the binary to run without further security prompts.
 
+Now remove the downloaded zip file and the extracted directory if you no longer need them:
+
+```bash
+rm -rf apify.zip apify/
+```
 
 #### Windows (PowerShell)
 
@@ -60,30 +66,29 @@ This will allow the binary to run without further security prompts.
 
 2. Create a new folder for Apify in `Program Files` (run PowerShell as Administrator):
 
-    ```powershell
-    New-Item -ItemType Directory -Force -Path "$env:ProgramFiles\Apify"
-    ```
+   ```powershell
+   New-Item -ItemType Directory -Force -Path "$env:ProgramFiles\Apify"
+   ```
 
 3. Move `apify.exe` to the new folder:
 
-    ```powershell
-    Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify"
-    ```
+   ```powershell
+   Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify"
+   ```
 
 4. Add Apify to your user PATH environment variable:
 
-    ```powershell
-    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Program Files\Apify", "User")
-    ```
+   ```powershell
+   [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Program Files\Apify", "User")
+   ```
 
 5. Restart your terminal, then verify the installation:
 
-    ```powershell
-    apify --version
-    ```
+   ```powershell
+   apify --version
+   ```
 
 > Ensure you run PowerShell as Administrator for steps that modify `Program Files`.
-
 
 Alternatively, you can build Apify from source:
 
