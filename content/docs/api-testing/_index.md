@@ -1,6 +1,7 @@
 ---
 title: "API Testing"
 weight: 6
+description: "Learn how to define, execute, and manage automated tests for your APIs using Apify."
 ---
 
 Welcome to the API Testing section. Here you'll find everything you need to define, execute, and manage automated tests for your APIs using Apify.

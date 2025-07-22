@@ -1,14 +1,14 @@
-baseURL = 'http://localhost:8002/'
+baseURL = "https://www.apify.com/"
 contentDir = "content"
-title = 'Apify Documentation'
+title = "Apify Documentation"
 theme = "learn"
 defaultContentLanguage = "en"
 sitemap = { changefreq = "weekly", filename = "sitemap.xml", priority = 0.5 }
 
 [params]
-  editURL = "https://github.com/apify/apify-doc/edit/master/content/"
+  editURL = "https://github.com/nahid/apify-site/edit/master/content/"
+  version = "1.0.0"
   author = "Apify"
-  version = "1.0.2"
   description = "Apify Documentation"
   showVisitedLinks = true
   disableLandingPage = false
@@ -18,7 +18,7 @@ home = [ "HTML", "RSS", "JSON"]
 
 [[menu.shortcuts]]
 name = "<i class='fab fa-github'></i> GitHub"
-url = "https://github.com/apify/apify-doc"
+url = "https://github.com/nahid/apify"
 weight = 10
 
 [languages]

@@ -1,6 +1,7 @@
 ---
 title: "Getting Started"
 weight: 1
+description: "Learn how to set up and use Apify CLI for API testing and mocking."
 ---
 
 Apify is a powerful CLI application for comprehensive API testing and mocking, enabling developers to streamline API validation and development workflows with rich configuration and execution capabilities.

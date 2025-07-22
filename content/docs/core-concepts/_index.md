@@ -1,6 +1,7 @@
 ---
 title: "Core Concepts"
 weight: 2
+description: "Understanding Apify's core concepts for API testing and mocking."
 ---
 
 ## Overview

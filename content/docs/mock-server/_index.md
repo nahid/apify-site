@@ -1,6 +1,7 @@
 ---
 title: "Mock Server"
 weight: 8
+description: "Learn how to use Apify's built-in mock server for API testing and development."
 ---
 
 Apify includes an integrated mock server to simulate API endpoints for development and testing. This allows you to work on your application without needing a live backend, or to simulate specific API behaviors for testing edge cases.
@@ -18,6 +19,7 @@ Creates a new mock API definition file interactively.
 ```bash
 apify create:mock <file> [--force]
 ```
+
 - `<file>`: (Required) The file path for the new mock API definition (e.g., `users.get` becomes `.apify/users/get.mock.json`). The `.mock.json` extension is added automatically.
 - `--force`: Overwrite if the file already exists.
 - Prompts for mock name, HTTP method, endpoint path, status code, content type, response body, headers, and conditional responses.
@@ -27,6 +29,7 @@ apify create:mock <file> [--force]
 Mock APIs are defined in `.mock.json` files (e.g., `.apify/mocks/users/get-user-by-id.mock.json`).
 
 Structure:
+
 ```json
 {
   "Name": "Mock User by ID",
@@ -81,26 +84,26 @@ Structure:
 
 - **`Endpoint`**: The URL path for the mock. Supports path parameters like `/users/:id` or `/users/{id}`.
 - **`Responses`**: An array of conditional response objects. They are evaluated in order.
-    - **`Condition`**: A C#-like expression to determine if this response should be used.
-        - Access request data:
-            - `path.paramName` (e.g., `path.id`)
-            - `query.paramName` (e.g., `query.page`)
-            - `headers.HeaderName` (e.g., `headers.Authorization`, case-insensitive)
-            - `body.fieldName` (e.g., `body.username`, for JSON bodies)
-        - `default` can be used for a default fallback response.
-    - **`StatusCode`**: The HTTP status code to return.
-    - **`Headers`**: An object of response headers.
-    - **`ResponseTemplate`**: The body of the response. Can be a JSON object or a string.
-        - **Template Variables**:
-            - `{{path.paramName}}`: Value of a path parameter.
-            - `{{query.paramName}}`: Value of a query parameter.
-            - `{{headers.HeaderName}}`: Value of a request header (case-insensitive).
-            - `{{body.fieldName}}`: Value of a field from the JSON request body.
-            - `{{body}}`: The full raw request body (string).
-            - `{{expr|> Faker.Random.Int(min,max)}}`: A random integer between min and max (inclusive). E.g., `{{expr|> Faker.Random.Int(1,100)}}`.
-            - `{{expr|> Faker.Random.Uuid()}}`: A random UUID.
-            - `{{expr|> Faker.Date.Recent()}}`: A recent date.
-            - Any environment or project variable (e.g., `{{baseUrl}}`).
+  - **`Condition`**: A C#-like expression to determine if this response should be used.
+    - Access request data:
+      - `path.paramName` (e.g., `path.id`)
+      - `query.paramName` (e.g., `query.page`)
+      - `headers.HeaderName` (e.g., `headers.Authorization`, case-insensitive)
+      - `body.fieldName` (e.g., `body.username`, for JSON bodies)
+    - `default` can be used for a default fallback response.
+  - **`StatusCode`**: The HTTP status code to return.
+  - **`Headers`**: An object of response headers.
+  - **`ResponseTemplate`**: The body of the response. Can be a JSON object or a string.
+    - **Template Variables**:
+      - `{{path.paramName}}`: Value of a path parameter.
+      - `{{query.paramName}}`: Value of a query parameter.
+      - `{{headers.HeaderName}}`: Value of a request header (case-insensitive).
+      - `{{body.fieldName}}`: Value of a field from the JSON request body.
+      - `{{body}}`: The full raw request body (string).
+      - `{{expr|> Faker.Random.Int(min,max)}}`: A random integer between min and max (inclusive). E.g., `{{expr|> Faker.Random.Int(1,100)}}`.
+      - `{{expr|> Faker.Random.Uuid()}}`: A random UUID.
+      - `{{expr|> Faker.Date.Recent()}}`: A recent date.
+      - Any environment or project variable (e.g., `{{baseUrl}}`).
 
 ### Mock Server Command
 
@@ -109,6 +112,7 @@ Starts a local API mock server using mock definition files.
 ```bash
 apify server:mock [--port <port_number>] [--directory <path_to_mocks>] [--verbose]
 ```
+
 - `--port <port_number>`: Port for the mock server (default: from `apify-config.json` or 1988).
 - `--directory <path_to_mocks>`: Directory containing mock definition files (default: `.apify`).
 - `--verbose` or `-v`: Enable verbose logging for the mock server.

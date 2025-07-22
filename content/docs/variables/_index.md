@@ -1,6 +1,7 @@
 ---
 title: "Environment Variables"
 weight: 3
+description: "Manage and use environment variables in Apify for API testing and mocking."
 ---
 
 Apify's variable system enables dynamic configuration of API definitions and mock responses through template substitution. Variables can be set at different levels, each with a specific precedence:
@@ -8,11 +9,11 @@ Apify's variable system enables dynamic configuration of API definitions and moc
 ### Variable Precedence
 
 1. **Request-level variables** (highest priority):  
-    Defined within an individual API test definition file, these override all other variables.
+   Defined within an individual API test definition file, these override all other variables.
 2. **Environment variables** (medium priority):  
-    Specified in the `Environments` section of `apify-config.json`, these override project-level variables.
+   Specified in the `Environments` section of `apify-config.json`, these override project-level variables.
 3. **Project-level variables** (lowest priority):  
-    Set in the root `Variables` object of `apify-config.json`, these provide default values.
+   Set in the root `Variables` object of `apify-config.json`, these provide default values.
 
 Reference variables using the `{{variableName}}` syntax in URLs, headers, and response bodies.
 
@@ -26,22 +27,22 @@ You can define multiple environments in the `Environments` array of `apify-confi
 
 ```json
 {
-    "Environments": [
-        {
-            "Name": "Development",
-            "Variables": {
-                "API_BASE_URL": "https://dev.api.example.com",
-                "AUTH_TOKEN": "dev-token"
-            }
-        },
-        {
-            "Name": "Production",
-            "Variables": {
-                "API_BASE_URL": "https://api.example.com",
-                "AUTH_TOKEN": "prod-token"
-            }
-        }
-    ]
+  "Environments": [
+    {
+      "Name": "Development",
+      "Variables": {
+        "API_BASE_URL": "https://dev.api.example.com",
+        "AUTH_TOKEN": "dev-token"
+      }
+    },
+    {
+      "Name": "Production",
+      "Variables": {
+        "API_BASE_URL": "https://api.example.com",
+        "AUTH_TOKEN": "prod-token"
+      }
+    }
+  ]
 }
 ```
 
@@ -51,15 +52,13 @@ When defining API requests, you can reference environment variables or custom va
 
 ```json
 {
-    "Method": "GET",
-    "Url": "{{ env.API_BASE_URL }}/users",
-    "Headers": {
-        "Authorization": "Bearer {{ env.AUTH_TOKEN }}"
-    }
+  "Method": "GET",
+  "Url": "{{ env.API_BASE_URL }}/users",
+  "Headers": {
+    "Authorization": "Bearer {{ env.AUTH_TOKEN }}"
+  }
 }
 ```
-
-
 
 ### Listing Environments and Variables
 
@@ -73,9 +72,9 @@ Global variables can be added directly to API definition files under the `Variab
 
 ```json
 {
-    "Variables": {
-        "CUSTOM_VAR": "custom-value"
-    }
+  "Variables": {
+    "CUSTOM_VAR": "custom-value"
+  }
 }
 ```
 
@@ -84,4 +83,3 @@ To display all environments and their variables defined in `apify-config.json`, 
 ```bash
 apify list-env
 ```
-

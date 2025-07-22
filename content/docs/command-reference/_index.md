@@ -1,6 +1,7 @@
 ---
 title: "Command Reference"
 weight: 3
+description: "Apify CLI command reference for API testing and management."
 ---
 
 Apify CLI provides commands to help you create, manage, and test API projects. You can run commands globally as `apify <command> [options]`

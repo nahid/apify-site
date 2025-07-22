@@ -1,6 +1,7 @@
 ---
 title: "Tests Runner"
 weight: 7
+description: "Run and manage API tests with Apify CLI."
 ---
 
 The Tests Runner is a command-line utility for executing API tests defined in Apify projects. It supports running tests against both live APIs and mock servers, and generates detailed result reports. By default, all tests are executed in the specified environment, or in the default environment if none is provided.
