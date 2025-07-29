@@ -1,65 +1,91 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.LanguageCode }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>{{ .Site.Title }}</title>
-    <link rel="stylesheet" href="{{ "css/homepage.css" | absURL }}?{{ .Site.Params.version | default "latest" }}">
-    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
-</head>
-<body class="home">
+    <link rel="stylesheet" href="{{ "css/homepage.css" | absURL }}?{{
+    .Site.Params.version | default "latest" }}">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css"
+    />
+  </head>
+  <body class="home">
     <header class="hero">
-        <div class="container hero-container">
-            <img src="{{ "images/logo.png" | relURL }}" alt="Apify Logo" class="hero-logo">
-            <div class="hero-text">
-                <h1>{{ .Site.Title }}</h1>
-                <p class="tagline">A robust and powerful CLI tool for testing APIs and a mock server.</p>
-                <a href="/docs/getting-started/" class="btn btn-primary">Get Started</a>
-                <a href="https://github.com/nahid/apify" class="btn btn-secondary">GitHub</a>
-            </div>
+      <div class="container hero-container">
+        <img src="{{ "images/logo.png" | relURL }}" alt="Apify Logo"
+        class="hero-logo">
+        <div class="hero-text">
+          <h1>{{ .Site.Title }}</h1>
+          <p class="tagline">
+            A robust and powerful CLI tool for testing APIs and a mock server.
+          </p>
+          <a href="/docs/getting-started/" class="btn btn-primary"
+            >Get Started</a
+          >
+          <a href="https://github.com/nahid/apify" class="btn btn-secondary"
+            >GitHub</a
+          >
         </div>
+      </div>
     </header>
 
     <main>
-        <section class="overview-section">
-            <div class="container">
-                <p class="overview-text">{{ .Content }}</p>
-            </div>
-        </section>
+      <section class="overview-section">
+        <div class="container">
+          <p class="overview-text">{{ .Content }}</p>
+        </div>
+      </section>
 
-        <section class="highlight-section">
-            <div class="container">
-                <div class="highlight-grid">
-                    <div class="highlight-item">
-                        <i class="fas fa-vial icon"></i>
-                        <h3>API Testing</h3>
-                        <p>Define, execute, and validate your API endpoints with comprehensive test definitions and assertions.</p>
-                    </div>
-                    <div class="highlight-item">
-                        <i class="fas fa-server icon"></i>
-                        <h3>Mock Server</h3>
-                        <p>Simulate API responses for efficient development, testing, and rapid prototyping without backend dependencies.</p>
-                    </div>
-                </div>
+      <section class="highlight-section">
+        <div class="container">
+          <div class="highlight-grid">
+            <div class="highlight-item">
+              <i class="fas fa-vial icon"></i>
+              <h3>API Testing</h3>
+              <p>
+                Define, execute, and validate your API endpoints with
+                comprehensive test definitions and assertions.
+              </p>
             </div>
-        </section>
+            <div class="highlight-item">
+              <i class="fas fa-server icon"></i>
+              <h3>Mock Server</h3>
+              <p>
+                Simulate API responses for efficient development, testing, and
+                rapid prototyping without backend dependencies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-                <section class="code-example-section">
-            <div class="container">
-                <h2>At a Glance</h2>
-                <div class="schema-viewer">
-                    <div class="schema-list">
-                        <ul>
-                            <li class="active" data-schema="config">apify-config.json</li>
-                            <li data-schema="api-test">API Test Definition</li>
-                            <li data-schema="mock-api">Mock API Definition</li>
-                        </ul>
-                    </div>
-                    <div class="schema-display">
-                        <div id="config-schema" class="schema-content active">
-                            <pre><code class="language-json">
+      <section class="code-example-section">
+        <div class="container">
+          <h2>At a Glance</h2>
+          <div class="schema-viewer">
+            <div class="schema-list">
+              <ul>
+                <li class="active" data-schema="config">apify-config.json</li>
+                <li data-schema="api-test">API Test Definition</li>
+                <li data-schema="mock-api">Mock API Definition</li>
+              </ul>
+            </div>
+            <div class="schema-display">
+              <div id="config-schema" class="schema-content active">
+                <pre><code class="language-json">
 {
   "Name": "My Project API Tests",
   "DefaultEnvironment": "Development",
@@ -80,9 +106,9 @@
   }
 }
                             </code></pre>
-                        </div>
-                        <div id="api-test-schema" class="schema-content">
-                            <pre><code class="language-json">
+              </div>
+              <div id="api-test-schema" class="schema-content">
+                <pre><code class="language-json">
 {
   "Name": "Get All Users",
   "Url": "{{ printf "%s" "{{" }}baseUrl{{ printf "%s" "}}" }}/users",
@@ -98,9 +124,9 @@
   ]
 }
                             </code></pre>
-                        </div>
-                        <div id="mock-api-schema" class="schema-content">
-                            <pre><code class="language-json">
+              </div>
+              <div id="mock-api-schema" class="schema-content">
+                <pre><code class="language-json">
 {
   "Name": "Mock User by ID",
   "Method": "GET",
@@ -117,93 +143,124 @@
   ]
 }
                             </code></pre>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="features-section">
-            <div class="container">
-                <h2>Key Features</h2>
-                <ul class="features-list">
-                    <li>
-                        <i class="fas fa-cogs"></i>
-                        <div>
-                            <strong>Comprehensive API Testing</strong>
-                            <p>Define and run detailed API tests with support for multiple request methods (GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS), rich payload types (JSON, Text, Form Data), file uploads, and detailed assertions for response validation.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-server"></i>
-                        <div>
-                            <strong>Integrated Mock Server</strong>
-                            <p>Simulate API endpoints with dynamic and conditional responses. Use template variables to generate realistic mock data, and manage mock definitions in simple file-based configurations.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-cloud"></i>
-                        <div>
-                            <strong>Environment Management</strong>
-                            <p>Manage different configurations for development, staging, and production environments with project, environment, and request-level variable overriding.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-terminal"></i>
-                        <div>
-                            <strong>User-Friendly CLI</strong>
-                            <p>Interactively create test and mock definitions, view detailed reports with visual progress indicators, and deploy with a single executable file.</p>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-box-open"></i>
-                        <div>
-                            <strong>Deployment & Extensibility</strong>
-                            <p>Enjoy a simplified deployment with a single executable file, making it easy to get started and integrate into your testing workflows.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-
+      <section class="features-section">
+        <div class="container">
+          <h2>Key Features</h2>
+          <ul class="features-list">
+            <li>
+              <i class="fas fa-cogs"></i>
+              <div>
+                <strong>Comprehensive API Testing</strong>
+                <p>
+                  Define and run detailed API tests with support for multiple
+                  request methods (GET, POST, PUT, DELETE, PATCH, HEAD,
+                  OPTIONS), rich payload types (JSON, Text, Form Data), file
+                  uploads, and detailed assertions for response validation.
+                </p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-server"></i>
+              <div>
+                <strong>Integrated Mock Server</strong>
+                <p>
+                  Simulate API endpoints with dynamic and conditional responses.
+                  Use template variables to generate realistic mock data, and
+                  manage mock definitions in simple file-based configurations.
+                </p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-cloud"></i>
+              <div>
+                <strong>Environment Management</strong>
+                <p>
+                  Manage different configurations for development, staging, and
+                  production environments with project, environment, and
+                  request-level variable overriding.
+                </p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-terminal"></i>
+              <div>
+                <strong>User-Friendly CLI</strong>
+                <p>
+                  Interactively create test and mock definitions, view detailed
+                  reports with visual progress indicators, and deploy with a
+                  single executable file.
+                </p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-code"></i>
+              <div>
+                <strong>ES6 Support for Dynamic Scripting</strong>
+                <p>
+                  Leverage ES6 features like arrow functions, template literals,
+                  and destructuring to create more expressive and maintainable
+                  test scripts.
+                </p>
+              </div>
+            </li>
+            <li>
+              <i class="fas fa-box-open"></i>
+              <div>
+                <strong>Deployment & Extensibility</strong>
+                <p>
+                  Enjoy a simplified deployment with a single executable file,
+                  making it easy to get started and integrate into your testing
+                  workflows.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
 
     <footer>
-        <div class="container">
-            <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
-        </div>
+      <div class="container">
+        <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+      </div>
     </footer>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
-        hljs.highlightAll();
+      hljs.highlightAll();
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const schemaList = document.querySelectorAll('.schema-list li');
-            const schemaContents = document.querySelectorAll('.schema-content');
-            let currentIndex = 0;
+      document.addEventListener("DOMContentLoaded", () => {
+        const schemaList = document.querySelectorAll(".schema-list li");
+        const schemaContents = document.querySelectorAll(".schema-content");
+        let currentIndex = 0;
 
-            function showSchema(index) {
-                schemaList.forEach(item => item.classList.remove('active'));
-                schemaContents.forEach(item => item.classList.remove('active'));
+        function showSchema(index) {
+          schemaList.forEach((item) => item.classList.remove("active"));
+          schemaContents.forEach((item) => item.classList.remove("active"));
 
-                schemaList[index].classList.add('active');
-                schemaContents[index].classList.add('active');
-            }
+          schemaList[index].classList.add("active");
+          schemaContents[index].classList.add("active");
+        }
 
-            function nextSchema() {
-                currentIndex = (currentIndex + 1) % schemaList.length;
-                showSchema(currentIndex);
-            }
+        function nextSchema() {
+          currentIndex = (currentIndex + 1) % schemaList.length;
+          showSchema(currentIndex);
+        }
 
-            setInterval(nextSchema, 3000); // Switch every 3 seconds
+        setInterval(nextSchema, 3000); // Switch every 3 seconds
 
-            schemaList.forEach((item, index) => {
-                item.addEventListener('click', () => {
-                    currentIndex = index;
-                    showSchema(index);
-                });
-            });
+        schemaList.forEach((item, index) => {
+          item.addEventListener("click", () => {
+            currentIndex = index;
+            showSchema(index);
+          });
         });
+      });
     </script>
-</body>
+  </body>
 </html>
