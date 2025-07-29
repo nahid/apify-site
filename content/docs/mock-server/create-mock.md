@@ -15,7 +15,7 @@ apify create:mock <file> [--force]
 ### Example
 
 ```bash
-apify create:mock users.get --name "Get User by ID" --method GET --endpoint "/api/users/{id}" --status-code 200 --content-type "application/json" --response-body '{"id": "{{path.id}}", "name": "{{expr|> Faker.Name.FullName()}}", "email": "{{expr|> Faker.Internet.Email()}}"}' --force
+apify create:mock users.get --prompt --force
 ```
 
 ### Command Arguments
@@ -44,46 +44,48 @@ Mock APIs are defined in `.mock.json` files, typically located within the `.apif
 
 ```json
 {
-  "Name": "Get post by ID",
-  "Method": "GET",
-  "Endpoint": "/api/posts/{postId}",
-  "Responses": [
+  "name": "Get post by ID",
+  "method": "GET",
+  "endpoint": "/api/posts/{postId}",
+  "responses": [
     {
-      "Condition": "path[\"postId\"] == \"1\"",
-      "StatusCode": 200,
-      "Headers": {
+      "condition": "$.path.postId == '1'",
+      "statusCode": 200,
+      "headers": {
         "X-Source": "Mock-Conditional-User1"
       },
-      "ResponseTemplate": {
+      "responseTemplate": {
         "id": 1,
-        "name": "{{ expr|> Faker.Name.FullName() }}",
-        "email": "{{ expr|> Faker.Internet.Email() }}",
-        "requested_id": "{{path.postId}}",
-        "random_code": "{{expr|> Faker.Random.Number(1000,9999).ToString()}}"
+        "name": "{{ $.faker.person.fullName() }}",
+        "email": "{{ $.faker.internet.email() }}",
+        "requested_id": "{{ $.path.postId }}",
+        "random_code": "{{ $.faker.number.int({ min: 1000, max: 9999 }) }}"
       }
     },
     {
-      "Condition": "query[\"type\"] == \"admin\" && headers[\"X-Requested-With\"] == \"XMLHttpRequest\"",
-      "StatusCode": 200,
-      "ResponseTemplate": {
-        "id": "{{path.postId}}",
+      "condition": "$.query.type == 'admin' && $.headers['x-requested-with'] == 'XMLHttpRequest'",
+      "statusCode": 200,
+      "responseTemplate": {
+        "id": "{{ $.path.postId }}",
         "name": "Admin User (Mocked)",
         "email": "admin.mock@example.com",
         "role": "admin",
-        "requested_id": "{{headers.X-Requested-With}}",
-        "uuid": "{{expr|> Faker.Random.Uuid().ToString()}}"
+        "requested_id": "{{ $.headers['x-requested-with'] }}",
+        "uuid": "{{ $.faker.string.uuid() }}"
       }
     },
     {
-      "Condition": "default",
-      "StatusCode": 404,
-      "ResponseTemplate": {
+      "condition": "default",
+      "statusCode": 404,
+      "responseTemplate": {
         "error": "User not found",
-        "id_searched": "{{path.postId}}"
+        "id_searched": "{{ $.path.postId }}"
       }
     }
   ]
 }
+```
+
 ```
 
 ### Fields Explained
@@ -118,6 +120,13 @@ You can use the following variables in your mock definitions:
 - **`headers`**: Contains HTTP headers from the request.
 - **`body`**: Contains the request body (for POST, PUT, PATCH).
 
-Access data in templates with `{{ ... }}` (dot notation) or in expressions/conditions with bracket notation (e.g., `path["userId"]`). In `Condition` fields, use variables directly (e.g., `path["userId"] == "1"`).
+Access data in templates with `{{ ... }}` (dot notation)
 
-> You can also use `Faker` expressions to generate dynamic data in your mock responses. For example, `{{expr|> Faker.Name.FullName()}}` generates a random full name. To learn more about available Faker expressions, see the [Faker documentation](/docs/api-testing/manage-data/#faker-data).
+### Available Reserved Objects
+
+- **`$.path`**: Represents the request path parameters.
+- **`$.query`**: Represents the query string parameters.
+- **`$.headers`**: Represents the request headers.
+- **`$.body`**: Represents the request body.
+- **`$.faker`**: Provides access to the [Faker.js](https://fakerjs.dev/) library for generating random data.
+```

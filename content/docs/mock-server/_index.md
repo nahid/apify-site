@@ -47,11 +47,11 @@ Structure:
         "name": "John Doe (Mocked)",
         "email": "john.mock@example.com",
         "requested_id": "{{path.id}}",
-        "random_code": "{{expr|> Faker.Random.Int(1000,9999)}}"
+        "random_code": "{# $.faker.number.int({min: 1000, max: 9999}) #}" // Random number
       }
     },
     {
-      "Condition": "query.type == \"admin\" && header.X-Admin-Token == \"SUPER_SECRET\"",
+      "Condition": "$.query.type == \"admin\" && $.headers[\"X-Admin-Token\"] == \"SUPER_SECRET\"",
       "StatusCode": 200,
       "ResponseTemplate": {
         "id": "{{path.id}}",
@@ -59,15 +59,15 @@ Structure:
         "email": "admin.mock@example.com",
         "role": "admin",
         "token_used": "{{header.X-Admin-Token}}",
-        "uuid": "{{expr|> Faker.Random.Uuid()}}"
+        "uuid": "{# $.faker.string.uuid() #}"
       }
     },
     {
-      "Condition": "body.status == \"pending\"", // Example for POST/PUT
+      "Condition": "$.body.status == \"pending\"", // Example for POST/PUT
       "StatusCode": 202,
       "ResponseTemplate": {
         "message": "Request for user {{path.id}} with status 'pending' accepted.",
-        "received_payload": "{{body}}" // Full request body
+        "received_payload": "" // Full request body
       }
     },
     {
@@ -94,16 +94,6 @@ Structure:
   - **`StatusCode`**: The HTTP status code to return.
   - **`Headers`**: An object of response headers.
   - **`ResponseTemplate`**: The body of the response. Can be a JSON object or a string.
-    - **Template Variables**:
-      - `{{path.paramName}}`: Value of a path parameter.
-      - `{{query.paramName}}`: Value of a query parameter.
-      - `{{headers.HeaderName}}`: Value of a request header (case-insensitive).
-      - `{{body.fieldName}}`: Value of a field from the JSON request body.
-      - `{{body}}`: The full raw request body (string).
-      - `{{expr|> Faker.Random.Int(min,max)}}`: A random integer between min and max (inclusive). E.g., `{{expr|> Faker.Random.Int(1,100)}}`.
-      - `{{expr|> Faker.Random.Uuid()}}`: A random UUID.
-      - `{{expr|> Faker.Date.Recent()}}`: A recent date.
-      - Any environment or project variable (e.g., `{{baseUrl}}`).
 
 ### Mock Server Command
 
@@ -116,4 +106,5 @@ apify server:mock [--port <port_number>] [--directory <path_to_mocks>] [--verbos
 - `--port <port_number>`: Port for the mock server (default: from `apify-config.json` or 1988).
 - `--directory <path_to_mocks>`: Directory containing mock definition files (default: `.apify`).
 - `--verbose` or `-v`: Enable verbose logging for the mock server.
-- Reads configuration from the `MockServer` block in `apify-config.json` but command-line options take precedence.
+
+> Reads configuration from the `MockServer` block in `apify-config.json` but command-line options take precedence.

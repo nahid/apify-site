@@ -1,20 +1,18 @@
 ---
 title: "Execute API Test"
-
 ---
-
 
 Executes an API test based on a specified definition file. The command reads the API request and expected response details from the provided file, sends the request to the target API endpoint, and evaluates the response using the assertions defined in the test file. This allows you to automate the validation of API endpoints, ensuring they behave as expected under different scenarios. You can specify the environment, enable verbose output for detailed logs, and use either JSON or dot notation for the file path. The results, including assertion outcomes and any errors, are displayed in the console.
 
 ```bash
 apify call <file> [--env <environment_variables>] [--verbose]
 ```
+
 - `<file>`: (Required) An API definition file path (e.g., `users/all.json`). Dot notation like `users.all` is also supported.
 - `--env <environment_name>`: Specifies the environment to use (e.g., "Production"). Uses default from `apify-config.json` if not set.
 - `--verbose` or `-v`: Displays detailed output, including request and response bodies.
 
 ### Command Options
-
 
 - **`--env`**: Specifies the environment name, e.g., "Production".
 - **`--vars`**: Allows passing additional variables to the request/tests, e.g., `--vars "key1=value1;key2=value2"`. These can be referenced in the API definition using `{{ vars.key1 }}`.
@@ -25,7 +23,6 @@ apify call <file> [--env <environment_variables>] [--verbose]
 - **`--verbose`**: Displays detailed output.
 - **`--debug`**: Enables debug mode for more detailed output.
 - **`--tag`**: Filters tests by tag (e.g., "smoke", "regression").
-
 
 ### Test Assertions
 

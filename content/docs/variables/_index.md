@@ -15,7 +15,7 @@ Apify's variable system enables dynamic configuration of API definitions and moc
 3. **Project-level variables** (lowest priority):  
    Set in the root `Variables` object of `apify-config.json`, these provide default values.
 
-Reference variables using the `{{variableName}}` syntax in URLs, headers, and response bodies.
+Reference variables using the `{{env.variableName}}` syntax in URLs, headers, and response bodies.
 
 ### Managing Environments
 

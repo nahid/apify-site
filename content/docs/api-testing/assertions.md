@@ -1,6 +1,5 @@
 ---
 title: "Test Assertions"
-
 ---
 
 Apify provides comprehensive assertion capabilities using C# expressions to validate API responses. Assertions are defined in the `Tests` array of your API test definition.
@@ -17,53 +16,60 @@ You can define assertions in your test definition file under the `Tests` array. 
 
 ```json
 {
-    "Tests": [
-        {
-            "Description": "Status code is 200",
-            "Assert": "response.StatusCode == 200"
-        },
-        {
-            "Description": "Response contains expected property",
-            "Assert": "response.Body.ContainsKey(\"result\")"
-        }
-    ]
+  "Tests": [
+    {
+      "Description": "Status code is 200",
+      "Assert": "$.response.getStatusCode() == 200"
+    },
+    {
+      "Description": "Response contains expected property",
+      "Assert": "$.response.getJson()?.name ? true : false"
+    }
+  ]
 }
 ```
 
-### Fields 
+### Fields
 
 - **`Title`**: A descriptive name for the assertion.
-- **`Case`**: A C# expression to be evaluated. The expression should return a boolean value. You can use the `Assert` object and its methods to perform assertions.
+- **`Case`**: A C# expression to be evaluated. The expression should return a boolean value. You can use the `$.assert` object and its methods to perform assertions.
 
 ## Common Assertion Scenarios
 
 - **Status Code Validation:**  
-    Ensure the API returns the correct HTTP status code.
-    ```csharp
-    Response.StatusCode == 200
-    ```
+   Ensure the API returns the correct HTTP status code.
+
+  ```js
+  $.response.getStatusCode() == 200;
+  ```
 
 - **Header Validation:**  
-    Check if a specific header exists or has the expected value.
-    ```csharp
-    Response.Headers["Content-Type"] == "application/json"
-    ```
+   Check if a specific header exists or has the expected value.
+
+  ```js
+  $.response.getJson()?.name ? true : false;
+  ```
 
 - **Body Content Validation:**  
-    Verify the response body contains expected data.
-    ```csharp
-    Assert.IsTrue(Response.IsSuccessful)
-    ```
+   Verify the response body contains expected data.
+
+  ```js
+  $.assert.isTrue($.response.getJson()?.active);
+  ```
 
 - **Array and Collection Checks:**  
-    Assert that a collection in the response has the expected length.
-    ```csharp
-    Response.Json["items"].Count == 10
-    ```
+   Assert that a collection in the response has the expected length.
 
+  ```js
+  $.response.getJson()?.items?.length == 10;
+  ```
 
+- **Handling Assertion Failures:**
+  When an assertion fails, it throws an error with a message indicating the failure. You can catch these errors in your test runner to handle them gracefully.
 
-## Handling Assertion Failures
+  ```js
+  $.assert.isTrue($.response.getJson()?.active);
+  ```
 
 When an assertion fails, Apify provides detailed error messages indicating which assertion failed and why. This helps you quickly identify and fix issues in your API.
 
@@ -73,370 +79,434 @@ There are several built-in assertions you can use to validate API responses. Her
 
 ### List of Assert Methods
 
-- [Assert.Equals](#assertequals)
-- [Assert.NotEquals](#assertnotequals)
-- [Assert.IsTrue](#assertistrue)
-- [Assert.IsFalse](#assertisfalse)
-- [Assert.IsNull](#assertisnull)
-- [Assert.IsNotNull](#assertisnotnull)
-- [Assert.IsEmpty](#assertisempty)
-- [Assert.IsNotEmpty](#assertisnotempty)
-- [Assert.IsGreaterThan](#assertisgreaterthan)
-- [Assert.IsLessThan](#assertislessthan)
-- [Assert.IsGreaterThanOrEqual](#assertisgreaterthanorequal)
-- [Assert.IsLessThanOrEqual](#assertislessthanorequal)
-- [Assert.IsBetween](#assertisbetween)
-- [Assert.IsNotBetween](#assertisnotbetween)
-- [Assert.Contains](#assertcontains)
-- [Assert.Response.StatusCodeIs](#assertresponsestatuscodeis)
-- [Assert.Response.StatusCodeIsNot](#assertresponsestatuscodeisnot)
-- [Assert.Response.HasHeader](#assertresponsehasheader)
-- [Assert.Response.HeaderValueContains](#assertresponseheadervaluecontains)
-- [Assert.Response.ContentTypeIs](#assertresponsecontenttypeis)
-- [Assert.Response.BodyContains](#assertresponsebodycontains)
-- [Assert.Response.BodyMatchesRegex](#assertresponsebodymatchesregex)
-- [Assert.Response.RedirectsTo](#assertresponseredirectsto)
-- [Assert.Response.IsRedirected](#assertresponseisredirected)
+- [$.assert.equals](#assertequals)
+- [$.assert.notEquals](#assertnotequals)
+- [$.assert.isTrue](#assertistrue)
+- [$.assert.isFalse](#assertisfalse)
+- [$.assert.isNull](#assertisnull)
+- [$.assert.isNotNull](#assertisnotnull)
+- [$.assert.isEmpty](#assertisempty)
+- [$.assert.isNotEmpty](#assertisnotempty)
+- [$.assert.isArray](#assertisarray)
+- [$.assert.isObject](#assertisobject)
+- [$.assert.isString](#assertisstring)
+- [$.assert.isNumber](#assertisnumber)
+- [$.assert.isBoolean](#assertisboolean)
+- [$.assert.isGreaterThan](#assertisgreaterthan)
+- [$.assert.isLessThan](#assertislessthan)
+- [$.assert.isGreaterThanOrEqual](#assertisgreaterthanorequal)
+- [$.assert.isLessThanOrEqual](#assertislessthanorequal)
+- [$.assert.isBetween](#assertisbetween)
+- [$.assert.isNotBetween](#assertisnotbetween)
+- [$.assert.contains](#assertcontains)
+- [$.assert.notContains](#assertnotcontains)
+- [$.assert.matchesRegex](#assertmatchesregex)
+- [$.assert.notMatchesRegex](#assertNotMatchesRegex)
 
-There are another two objects available for the `Case` field, `Request` and `Response`, you can use them to access the request and response data directly. For example, you can access the request URL with `Request.Body.Json.name` or the response body with `Response.Body`.
+There are another two objects available for the `Case` field, `$.request` and `$.response`, you can use them to access the request and response data directly. For example, you can access the request URL with `$.request.getBod().json.name` or the response body with `$.response.getJson().name`.
 
 - [Request](/docs/api-testing/create-request/#fields-explained)
 - [Response](#response)
 
 ### Assert
-Assertions are made using the `Assert` object, which provides methods to validate various aspects of the response. All the `Assert` methods support accepting messages that will be displayed if the assertion fails in last parameter and all methods return a boolean indicating success or failure. Here are some common assertions you can use:
 
-#### Assert.Equils
+Assertions are made using the `$.assert` object, which provides methods to validate various aspects of the response. All the `$.assert` methods support accepting messages that will be displayed if the assertion fails in last parameter and all methods return a boolean indicating success or failure. Here are some common assertions you can use:
+
+### Assert Method Reference
+
+Below are the commonly used assertion methods available for validating API responses. Each method returns a boolean indicating success or failure and can accept an optional message as the last parameter.
+
+#### $.assert.equals
+
 Checks if two values are equal.
-```csharp
-Assert.Equals(actualValue, expectedValue)
+
+```js
+$.assert.equals(actualValue, expectedValue);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if name is John",
-  "Case": "Assert.Equals(Response.Json['name'], 'John')"
+  "Case": "$.assert.equals(Response.Json['name'], 'John')"
 }
 ```
 
-#### Assert.NotEquals
+#### $.assert.notEquals
+
 Checks if two values are not equal.
-```csharp
-Assert.NotEquals(actualValue, expectedValue)
+
+```js
+$.assert.notEquals(actualValue, expectedValue);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if name is not John",
-  "Case": "Assert.NotEquals(Response.Json['name'], 'John')"
+  "Case": "$.assert.notEquals(Response.Json['name'], 'John')"
 }
 ```
 
-#### Assert.IsTrue
+#### $.assert.isTrue
+
 Checks if a condition is true.
-```csharp
-Assert.IsTrue(condition)
+
+```js
+$.assert.isTrue(condition);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user is active",
-  "Case": "Assert.IsTrue(Response.Json['isActive'])"
+  "Case": "$.assert.isTrue(Response.Json['isActive'])"
 }
 ```
 
-#### Assert.IsFalse
+#### $.assert.isFalse
+
 Checks if a condition is false.
-```csharp
-Assert.IsFalse(condition)
+
+```js
+$.assert.isFalse(condition);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user is not active",
-  "Case": "Assert.IsFalse(Response.Json['isActive'])"
+  "Case": "$.assert.isFalse(Response.Json['isActive'])"
 }
 ```
 
-#### Assert.IsNull
+#### $.assert.isNull
+
 Checks if a value is null.
-```csharp
-Assert.IsNull(value)
+
+```js
+$.assert.isNull(value);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user data is null",
-  "Case": "Assert.IsNull(Response.Json['userData'])"
+  "Case": "$.assert.isNull(Response.Json['userData'])"
 }
 ```
 
-#### Assert.IsNotNull
+#### $.assert.isNotNull
+
 Checks if a value is not null.
 
-```csharp
-Assert.IsNotNull(value)
+```js
+$.assert.isNotNull(value);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user data is not null",
-  "Case": "Assert.IsNotNull(Response.Json['userData'])"
+  "Case": "$.assert.isNotNull(Response.Json['userData'])"
 }
 ```
 
-#### Assert.IsEmpty
+#### $.assert.isEmpty
+
 Checks if a collection is empty.
-```csharp
-Assert.IsEmpty(collection)
+
+```js
+$.assert.isEmpty(collection);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if items array is empty",
-  "Case": "Assert.IsEmpty(Response.Json['items'])"
+  "Case": "$.assert.isEmpty(Response.Json['items'])"
 }
 ```
 
-#### Assert.IsNotEmpty
+#### $.assert.isNotEmpty
+
 Checks if a collection is not empty.
-```csharp
-Assert.IsNotEmpty(collection)
+
+```js
+$.assert.isNotEmpty(collection);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if items array is not empty",
-  "Case": "Assert.IsNotEmpty(Response.Json['items'])"
+  "Case": "$.assert.isNotEmpty(Response.Json['items'])"
 }
 ```
 
-#### Assert.IsGreaterThan
-Checks if a value is greater than another.
-```csharp
-Assert.IsGreaterThan(actualValue, expectedValue)
+#### $.assert.isArray
+
+Checks if a value is an array.
+
+```js
+$.assert.isArray(value);
 ```
+
 **Example:**
+
+```json
+{
+  "Title": "Check if items is an array",
+  "Case": "$.assert.isArray(Response.Json['items'])"
+}
+```
+
+#### $.assert.isObject
+
+Checks if a value is an object.
+
+```js
+$.assert.isObject(value);
+```
+
+**Example:**
+
+```json
+{
+  "Title": "Check if user data is an object",
+  "Case": "$.assert.isObject(Response.Json['userData'])"
+}
+```
+
+#### $.assert.isString
+
+Checks if a value is a string.
+
+```js
+$.assert.isString(value);
+```
+
+**Example:**
+
+```json
+{
+  "Title": "Check if name is a string",
+  "Case": "$.assert.isString(Response.Json['name'])"
+}
+```
+
+#### $.assert.isNumber
+
+Checks if a value is a number.
+
+```js
+$.assert.isNumber(value);
+```
+
+**Example:**
+
+```json
+{
+  "Title": "Check if age is a number",
+  "Case": "$.assert.isNumber(Response.Json['age'])"
+}
+```
+
+#### $.assert.isBoolean
+
+Checks if a value is a boolean.
+
+```js
+$.assert.isBoolean(value);
+```
+
+**Example:**
+
+```json
+{
+  "Title": "Check if isActive is a boolean",
+  "Case": "$.assert.isBoolean(Response.Json['isActive'])"
+}
+```
+
+#### $.assert.isGreaterThan
+
+Checks if a value is greater than another.
+
+```js
+$.assert.isGreaterThan(actualValue, expectedValue);
+```
+
+**Example:**
+
 ```json
 {
   "Title": "Check if user age is greater than 18",
-  "Case": "Assert.IsGreaterThan(Response.Json['age'], 18)"
+  "Case": "$.assert.isGreaterThan(Response.Json['age'], 18)"
 }
 ```
 
+#### $.assert.isLessThan
 
-#### Assert.IsLessThan
 Checks if a value is less than another.
-```csharp
-Assert.IsLessThan(actualValue, expectedValue)
+
+```js
+$.assert.isLessThan(actualValue, expectedValue);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user age is less than 65",
-  "Case": "Assert.IsLessThan(Response.Json['age'], 65)"
+  "Case": "$.assert.isLessThan(Response.Json['age'], 65)"
 }
 ```
 
-#### Assert.IsGreaterThanOrEqual
+#### $.assert.isGreaterThanOrEqual
+
 Checks if a value is greater than or equal to another.
-```csharp
-Assert.IsGreaterThanOrEqual(actualValue, expectedValue)
+
+```js
+$.assert.isGreaterThanOrEqual(actualValue, expectedValue);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user age is greater than or equal to 18",
-  "Case": "Assert.IsGreaterThanOrEqual(Response.Json['age'], 18)"
+  "Case": "$.assert.isGreaterThanOrEqual(Response.Json['age'], 18)"
 }
 ```
 
-#### Assert.IsLessThanOrEqual
+#### $.assert.isLessThanOrEqual
+
 Checks if a value is less than or equal to another.
-```csharp
-Assert.IsLessThanOrEqual(actualValue, expectedValue)
+
+```js
+$.assert.isLessThanOrEqual(actualValue, expectedValue);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user age is less than or equal to 65",
-  "Case": "Assert.IsLessThanOrEqual(Response.Json['age'], 65)"
+  "Case": "$.assert.isLessThanOrEqual(Response.Json['age'], 65)"
 }
 ```
 
-#### Assert.IsBetween
+#### $.assert.isBetween
+
 Checks if a value is between two other values.
-```csharp
-Assert.IsBetween(actualValue, lowerBound, upperBound)
+
+```js
+$.assert.isBetween(actualValue, lowerBound, upperBound);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user age is between 18 and 65",
-  "Case": "Assert.IsBetween(Response.Json['age'], 18, 65)"
+  "Case": "$.assert.isBetween(Response.Json['age'], 18, 65)"
 }
-``` 
-
-#### Assert.IsNotBetween
-Checks if a value is not between two other values.
-```csharp
-Assert.IsNotBetween(actualValue, lowerBound, upperBound)
 ```
+
+#### $.assert.isNotBetween
+
+Checks if a value is not between two other values.
+
+```js
+$.assert.isNotBetween(actualValue, lowerBound, upperBound);
+```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if user age is not between 18 and 65",
-  "Case": "Assert.IsNotBetween(Response.Json['age'], 18, 65)"
+  "Case": "$.assert.isNotBetween(Response.Json['age'], 18, 65)"
 }
 ```
 
-#### Assert.Contains
+#### $.assert.contains
+
 Checks if a collection contains a specific value.
-```csharp
-Assert.Contains(collection, item)
+
+```js
+$.assert.contains(collection, item);
 ```
+
 **Example:**
+
 ```json
 {
   "Title": "Check if items array contains 'item1'",
-  "Case": "Assert.Contains(Response.Json['items'], 'item1')"
+  "Case": "$.assert.contains(Response.Json['items'], 'item1')"
 }
 ```
 
+#### $.assert.notContains
 
-#### Assert.Response.StatusCodeIs
-Checks if the HTTP status code matches.
-```csharp
-Assert.Response.StatusCodeIs(int code)
+Checks if a collection does not contain a specific value.
+
+```js
+$.assert.notContains(collection, item);
 ```
+
 **Example:**
+
 ```json
 {
-  "Title": "Status code is 200 OK",
-  "Case": "Assert.Response.StatusCodeIs(200)"
+  "Title": "Check if items array does not contain 'item2'",
+  "Case": "$.assert.notContains(Response.Json['items'], 'item2')"
 }
 ```
 
-#### Assert.Response.StatusCodeIsNot
-Checks if the HTTP status code matches.
-```csharp
-Assert.Response.StatusCodeIsNot(int code)
+#### $.assert.matchesRegex
+
+Checks if a string matches a regular expression.
+
+```js
+$.assert.matchesRegex(value, pattern);
 ```
+
 **Example:**
+
 ```json
 {
-  "Title": "Status code is 200 OK",
-  "Case": "Assert.Response.StatusCodeIsNot(200)"
+  "Title": "Check if email matches pattern",
+  "Case": "$.assert.matchesRegex(Response.Json['email'], '^[\\w.-]+@[\\w.-]+\\.\\w+$')"
 }
 ```
 
-#### Assert.Response.HasHeader
-Checks if a specific header exists.
-```csharp
-Assert.Response.HasHeader(string name)
-``` 
+#### $.assert.notMatchesRegex
+
+Checks if a string does not match a regular expression.
+
+```js
+$.assert.notMatchesRegex(value, pattern);
+```
+
 **Example:**
+
 ```json
 {
-  "Title": "Header 'Content-Type' exists",
-  "Case": "Assert.Response.HasHeader('Content-Type')"
-}
-```
-#### Assert.Response.HeaderValueContains
-Checks if a header contains a specific value.
-```csharp
-Assert.Response.HeaderValueContains(string name, string value)
-```
-**Example:**
-```json
-{
-  "Title": "Header 'Content-Type' contains 'application/json'",
-  "Case": "Assert.Response.HeaderValueContains('Content-Type', 'application/json')"
+  "Title": "Check if username does not match pattern",
+  "Case": "$.assert.notMatchesRegex(Response.Json['username'], '^admin')"
 }
 ```
 
-#### Assert.Response.ContentTypeIs
-Checks if the response content type matches.
-```csharp
-Assert.Response.ContentTypeIs(string contentType)
-```
-**Example:**
-```json
-{
-  "Title": "Content-Type is application/json",
-  "Case": "Assert.Response.ContentTypeIs('application/json')"
-}
 ```
 
-#### Assert.Response.BodyContains
-Checks if the response body contains a specific string.
-```csharp
-Assert.Response.BodyContains(string value)
 ```
-**Example:**
-```json
-{
-  "Title": "Response body contains 'success'",
-  "Case": "Assert.Response.BodyContains('success')"
-}
-```
-
-#### Assert.Response.BodyMatchesRegex
-Checks if the response body matches a regular expression.
-```csharp
-Assert.Response.BodyMatchesRegex(string pattern)
-```
-**Example:**
-```json
-{
-  "Title": "Response body matches regex",
-  "Case": "Assert.Response.BodyMatchesRegex('^\\{.*\\}$')"
-}
-```
-
-#### Assert.Response.RedirectsTo
-Checks if the response redirects to a specific URL.
-```csharp
-Assert.Response.RedirectsTo(string url)
-```
-**Example:**
-```json
-{
-  "Title": "Response redirects to 'https://example.com'",
-  "Case": "Assert.Response.RedirectsTo('https://example.com')"
-}
-```
-
-#### Assert.Response.IsRedirected
-Checks if the response is a redirect.
-```csharp
-Assert.Response.IsRedirected()
-```
-**Example:**
-```json
-{
-  "Title": "Response is redirected",
-  "Case": "Assert.Response.IsRedirected()"
-}
-```
-
-### Response
-The `Response` object provides access to the API response data, allowing you to perform assertions on the response status, headers, body content, and more. You can use it in your assertions to validate the API behavior.
-
-#### Properties/Methods
-- `IsSuccessful: bool`: Returns `true` if the response status code is in the 2xx range.
-- `StatusCode: int`: The HTTP status code of the response.
-- `Headers: Dictionary<string, string>`: The response headers. You can access specific headers using `Response.Headers["Header-Name"]`.
-- `ContentType: string`: The content type of the response.
-- `Body: string`: The raw response body as a string.
-- `Json: object`: The parsed JSON response body (if applicable). You can access properties using dot notation, e.g., `Response.Json.propertyName`.
-- `ResponseTimeMs: int`: The time taken for the response in milliseconds.
-- `ErrorMessage: string`: The error message if the request failed.
-- `GetHeader(string name): string`: Returns the value of a specific header.
-- `HasHeader(string name): bool`: Checks if a specific header exists.
-
-
-##### Tips for Writing Assertions
-
-- Use clear and descriptive assertion descriptions.
-- Combine multiple conditions using logical operators (`&&`, `||`).
