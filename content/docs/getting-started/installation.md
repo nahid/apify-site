@@ -43,9 +43,9 @@ This will extract the `apify` binary (and possibly other files) to your current 
 
 ```bash
 # Make the binary executable and move it to /usr/local/bin
-cd apify/
-sudo chmod a+x apify
-sudo mv apify /usr/local/bin/
+
+sudo chmod a+x ./apify/apify
+sudo mv ./apify/apify /usr/local/bin/
 ```
 
 ```bash
