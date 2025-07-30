@@ -11,7 +11,7 @@ When managing data in your API tests, you can use dynamic placeholders and expre
 You can reference both environment variables and custom variables in your placeholders:
 
 - `env`: Retrieves the value of an environment variable by its `KEY`.
-- `vars`: Retrieves the value of a custom variable provided via command-line options, for example: `--vars "key1=value1;key2=value2"`.
+- `vars`: Lets you define or override custom variables for your requests or tests, for example: `--vars "key1=value1;key2=value2"`. These variables are merged with the current environment and can be accessed using `{{ vars.key1 }}` or `{{ vars.key2 }}` in your placeholders.
 
 For example:
 

@@ -13,7 +13,7 @@ apify tests
 ### Command Options
 
 - **`--env`**: Runs tests in the specified environment (e.g., `Development`, `Staging`, `Production`). Defaults to the environment set in `apify-config.json` if omitted.
-- **`--vars`**: Overrides or adds environment variables, using the format `--vars "var1=value1;var2=value2"`.
+- **`--vars`**: Lets you define or override custom variables for your requests or tests, for example: `--vars "key1=value1;key2=value2"`. These variables are merged with the current environment and can be accessed using `{{ vars.key1 }}` or `{{ vars.key2 }}` in your placeholders.
 - **`--dir`**: Sets the directory containing the tests. Uses the default directory if not specified.
 - **`--debug`**: Activates debug mode for more detailed logging during test execution.
 - **`--verbose`**: Produces verbose output with comprehensive test execution logs.

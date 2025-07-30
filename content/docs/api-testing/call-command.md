@@ -15,7 +15,7 @@ apify call <file> [--env <environment_variables>] [--verbose]
 ### Command Options
 
 - **`--env`**: Specifies the environment name, e.g., "Production".
-- **`--vars`**: Allows passing additional variables to the request/tests, e.g., `--vars "key1=value1;key2=value2"`. These can be referenced in the API definition using `{{ vars.key1 }}`.
+- **`--vars`**: Lets you define or override custom variables for your requests or tests, for example: `--vars "key1=value1;key2=value2"`. These variables are merged with the current environment and can be accessed using `{{ vars.key1 }}` or `{{ vars.key2 }}` in your placeholders.
 - **`--tests`**: Runs all tests in the `.apify` directory.
 - **`--show-request`**: Displays the request details before execution.
 - **`--show-response`**: Displays the response details after execution.

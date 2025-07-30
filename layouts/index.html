@@ -2,6 +2,24 @@
 <html lang="{{ .Site.LanguageCode }}">
   <head>
     <meta charset="utf-8" />
+
+    <meta name="description" content="{{ .Site.Params.description | default "A robust and powerful CLI tool for testing APIs and a mock server." }}" />
+    <meta name="author" content="{{ .Site.Params.author | default "Nahid Bin Azhar" }}" />
+    <meta name="keywords" content="{{ .Site.Params.keywords | default "API Testing, Mock Server, CLI Tool, Apify, JSON Mock Server, JSON API Test" }}" />
+    <meta name="image" content="{{ .Site.Params.image | default "https://apify.dev/images/logo.png" }}" />
+
+    <meta name="og:title" content="{{ .Site.Title }}" />
+    <meta name="og:description" content="{{ .Site.Params.description | default "A robust and powerful CLI tool for testing APIs and a mock server." }}" />
+    <meta name="og:image" content="{{ .Site.Params.image | default "https://apify.dev/images/logo.png" }}" />
+    <meta name="og:type" content="website" />
+    <meta name="og:url" content="{{ .Site.BaseURL }}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{ .Site.Title }}" />
+    <meta name="twitter:description" content="{{ .Site.Params.description | default "A robust and powerful CLI tool for testing APIs and a mock server." }}" />
+    <meta name="twitter:image" content="{{ .Site.Params.image | default "https://apify.dev/images/logo.png" }}" />
+    <meta name="twitter:site" content="@nahidbinazhar" />
+
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"

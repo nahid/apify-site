@@ -16,10 +16,27 @@ For a quick installation via your command line, use the following platform-speci
 
 #### Linux & macOS
 
+**For Linux Operating Systems:**
+
 ```bash
-# Download the appropriate zip file and extract it
-curl -L [DOWNLOAD_URL] -o apify.zip
-unzip apify.zip
+curl -L https://github.com/nahid/apify/releases/latest/download/apify-linux-x64.zip -o apify.zip
+
+```
+
+**For macOS*
+
+```bash
+# Download the latest release for macOS ARM64
+curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-arm64.zip -o apify.zip
+
+# Download the latest release for macOS Intel
+curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-x64.zip -o apify.zip
+```
+
+Unzip the downloaded file:
+
+```bash
+unzip apify.zip -d apify
 ```
 
 This will extract the `apify` binary (and possibly other files) to your current directory.
@@ -70,19 +87,31 @@ rm -rf apify.zip apify/
    New-Item -ItemType Directory -Force -Path "$env:ProgramFiles\Apify"
    ```
 
-3. Move `apify.exe` to the new folder:
+3. Download the latest release for Windows:
+
+   ```powershell
+   Invoke-WebRequest -Uri "https://github.com/nahid/apify/releases/latest/download/apify-win-x64.zip" -OutFile "apify.zip"
+   ```
+
+4. Unzip the downloaded file:
+
+   ```powershell
+   Expand-Archive -Path "apify.zip" -DestinationPath "apify"
+   ```
+
+5. Move `apify.exe` to the new folder:
 
    ```powershell
    Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify"
    ```
 
-4. Add Apify to your user PATH environment variable:
+6. Add Apify to your user PATH environment variable:
 
    ```powershell
    [Environment]::SetEnvironmentVariable("PATH", $env:PATH + ";C:\Program Files\Apify", "User")
    ```
 
-5. Restart your terminal, then verify the installation:
+7. Restart your terminal, then verify the installation:
 
    ```powershell
    apify --version
