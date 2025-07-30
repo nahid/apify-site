@@ -36,7 +36,7 @@ curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-x64.zi
 Unzip the downloaded file:
 
 ```bash
-unzip apify.zip -d apify
+unzip apify.zip -d .
 ```
 
 This will extract the `apify` binary (and possibly other files) to your current directory.
