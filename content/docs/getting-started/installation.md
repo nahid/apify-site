@@ -23,7 +23,7 @@ curl -L https://github.com/nahid/apify/releases/latest/download/apify-linux-x64.
 
 ```
 
-**For macOS*
+**For macOS**
 
 ```bash
 # Download the latest release for macOS ARM64
