@@ -96,13 +96,13 @@ rm -rf apify.zip apify/
 4. Unzip the downloaded file:
 
    ```powershell
-   Expand-Archive -Path "apify.zip" -DestinationPath "apify"
+   Expand-Archive -Path "apify.zip" -DestinationPath "."
    ```
 
 5. Move `apify.exe` to the new folder:
 
    ```powershell
-   Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify"
+   Move-Item -Path ".\apify\apify.exe" -Destination "$env:ProgramFiles\Apify" -Force
    ```
 
 6. Add Apify to your user PATH environment variable:
