@@ -34,10 +34,10 @@ Structure:
 {
   "Name": "Mock User by ID",
   "Method": "GET",
-  "Endpoint": "/api/users/:id", // Path parameters with :param or {param}
+  "Endpoint": "/api/users/{id}", // Path parameters with :param or {param}
   "Responses": [
     {
-      "Condition": "path.id == \"1\"", // C#-like condition
+      "Condition": "$.path.id == 1", // ES6(JavaScript) condition
       "StatusCode": 200,
       "Headers": {
         "X-Source": "Mock-Conditional-User1"
@@ -84,7 +84,7 @@ Structure:
 
 - **`Endpoint`**: The URL path for the mock. Supports path parameters like `/users/:id` or `/users/{id}`.
 - **`Responses`**: An array of conditional response objects. They are evaluated in order.
-  - **`Condition`**: A C#-like expression to determine if this response should be used.
+  - **`Condition`**: A ES6(JavaScript) expression to determine if this response should be used.
     - Access request data:
       - `path.paramName` (e.g., `path.id`)
       - `query.paramName` (e.g., `query.page`)

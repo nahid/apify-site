@@ -2,7 +2,7 @@
 title: "Test Assertions"
 ---
 
-Apify provides comprehensive assertion capabilities using C# expressions to validate API responses. Assertions are defined in the `Tests` array of your API test definition.
+Apify provides comprehensive assertion capabilities using ES6(JavaScript) expressions to validate API responses. Assertions are defined in the `Tests` array of your API test definition.
 
 ## What are Assertions?
 
@@ -10,7 +10,7 @@ Assertions are logical statements that verify whether the actual API response ma
 
 ## Defining Assertions
 
-You can define assertions in your test definition file under the `Tests` array. Each assertion uses a C#/TypeScript like expression that evaluates to `true` or `false`. If an assertion fails, the test is marked as failed.
+You can define assertions in your test definition file under the `Tests` array. Each assertion uses a ES6(JavaScript) expression that evaluates to `true` or `false`. If an assertion fails, the test is marked as failed.
 
 **Example:**
 
@@ -32,7 +32,7 @@ You can define assertions in your test definition file under the `Tests` array. 
 ### Fields
 
 - **`Title`**: A descriptive name for the assertion.
-- **`Case`**: A C# expression to be evaluated. The expression should return a boolean value. You can use the `$.assert` object and its methods to perform assertions.
+- **`Case`**: Any ES6(JavaScript) to be evaluated. The expression should return a boolean value, or you can use the `$.assert` object and its methods to perform assertions.
 
 ## Common Assertion Scenarios
 

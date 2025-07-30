@@ -1,6 +1,6 @@
 # Apify
 
-A powerful C# CLI application for comprehensive API testing and mocking, enabling developers to streamline API validation and development workflows with rich configuration and execution capabilities.
+A powerful CLI application for comprehensive API testing and mocking, enabling developers to streamline API validation and development workflows with rich configuration and execution capabilities.
 
 ## Features
 
@@ -193,7 +193,7 @@ Structure:
 - **`Tags`**: Used for filtering tests with `apify tests --tag <tagname>`.
 - **`Tests` (Assertions)**: A list of assertion objects.
     - **`Title`**: A descriptive name for the assertion.
-    - **`Case`**: A C# expression to be evaluated. The expression should return a boolean value. You can use the `Assert` object and its methods to perform assertions.
+    - **`Case`**: Any ES6(JavaScript) to be evaluated. The expression should return a boolean value, or you can use the `$.assert` object and its methods to perform assertions.
 
 ### Mock API Definitions (`.mock.json`)
 
@@ -207,7 +207,7 @@ Structure:
   "Endpoint": "/api/users/:id", // Path parameters with :param or {param}
   "Responses": [
     {
-      "Condition": "path.id == \"1\"", // C#-like condition
+      "Condition": "$.path.id == 1", // ES6(JavaScript) expression with boolean return
       "StatusCode": 200,
       "Headers": {
         "X-Source": "Mock-Conditional-User1"
@@ -254,7 +254,7 @@ Structure:
 
 - **`Endpoint`**: The URL path for the mock. Supports path parameters like `/users/:id` or `/users/{id}`.
 - **`Responses`**: An array of conditional response objects. They are evaluated in order.
-    - **`Condition`**: A C#-like expression to determine if this response should be used.
+    - **`Condition`**: Any ES6(JavaScript) expression to determine if this response should be used. Make sure to return a boolean value.:
         - Access request data:
             - `path.paramName` (e.g., `path.id`)
             - `query.paramName` (e.g., `query.page`)

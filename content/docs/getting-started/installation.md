@@ -29,7 +29,7 @@ curl -L https://github.com/nahid/apify/releases/latest/download/apify-linux-x64.
 # Download the latest release for macOS ARM64
 curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-arm64.zip -o apify.zip
 
-# Download the latest release for macOS Intel
+# Or download the latest release for macOS Intel
 curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-x64.zip -o apify.zip
 ```
 

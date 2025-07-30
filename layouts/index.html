@@ -129,7 +129,7 @@
                 <pre><code class="language-json">
 {
   "Name": "Get All Users",
-  "Url": "{{ printf "%s" "{{" }}baseUrl{{ printf "%s" "}}" }}/users",
+  "Url": "{{ printf "%s" "{{" }}env.baseUrl{{ printf "%s" "}}" }}/users",
   "Method": "GET",
   "Headers": {
     "X-Api-Key": "{{ printf "%s" "{{" }}apiKey{{ printf "%s" "}}" }}"
@@ -137,7 +137,7 @@
   "Tests": [
     {
       "Title": "Status code is 200 OK",
-      "Case": "Assert.Response.StatusCodeIs(200)"
+      "Case": "$.assert.equals($.response.getStatusCode(), 200)"
     }
   ]
 }
@@ -148,14 +148,15 @@
 {
   "Name": "Mock User by ID",
   "Method": "GET",
-  "Endpoint": "/api/users/:id",
+  "Endpoint": "/api/users/{id}",
   "Responses": [
     {
-      "Condition": "path.id == \"1\"",
+      "Condition": "$.path.id == 1",
       "StatusCode": 200,
       "ResponseTemplate": {
-        "id": 1,
-        "name": "John Doe (Mocked)"
+        "id": "{# $.faker.datatype.number({ min: 1, max: 100 }) #}",
+        "name": "{# $.faker.person.fullName() #}",
+        "email": "{# $.faker.internet.email() #}",
       }
     }
   ]
@@ -195,6 +196,17 @@
               </div>
             </li>
             <li>
+              <i class="fas fa-code"></i>
+              <div>
+                <strong>ES6(JavaScript) Support for Dynamic Scripting</strong>
+                <p>
+                  Leverage ES6(JavaScript) features like arrow functions, template literals,
+                  and destructuring to create more expressive and maintainable
+                  test scripts.
+                </p>
+              </div>
+            </li>
+            <li>
               <i class="fas fa-cloud"></i>
               <div>
                 <strong>Environment Management</strong>
@@ -216,17 +228,7 @@
                 </p>
               </div>
             </li>
-            <li>
-              <i class="fas fa-code"></i>
-              <div>
-                <strong>ES6 Support for Dynamic Scripting</strong>
-                <p>
-                  Leverage ES6 features like arrow functions, template literals,
-                  and destructuring to create more expressive and maintainable
-                  test scripts.
-                </p>
-              </div>
-            </li>
+      
             <li>
               <i class="fas fa-box-open"></i>
               <div>
