@@ -43,7 +43,7 @@ Structure:
 {
   "Name": "Get All Users",
   "Description": "Fetches the list of all users",
-  "Url": "{{env.baseUrl}}/users?page={{vars.defaultPage}}",
+  "Url": "{{env.baseUrl}}/users?page={{env.defaultPage}}",
   "Method": "GET",
   "Headers": {
     "Accept": "application/json",
@@ -113,4 +113,4 @@ The `Body` field in the API test definition specifies the content of the request
 
 ### Test Assertions
 
-Apify provides comprehensive assertion capabilities using C#/TypeScript expressions to validate API responses. Assertions are defined in the `Tests` array of your API test definition. To know more about assertions, see the [Test Assertions](/docs/api-testing/assertions) section.
+Apify provides comprehensive assertion capabilities using ES6(JavaScript) expressions to validate API responses. Assertions are defined in the `Tests` array of your API test definition. To know more about assertions, see the [Test Assertions](/docs/api-testing/assertions) section.

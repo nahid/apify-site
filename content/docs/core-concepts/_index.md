@@ -94,19 +94,21 @@ API tests are stored as JSON files in `.apify/` (e.g., `.apify/users/get-users.j
 {
   "Name": "Get All Users",
   "Description": "Fetches the list of all users",
-  "Url": "{{baseUrl}}/users?page={{defaultPage}}",
+  "Url": "{{env.baseUrl}}/users?page={{env.defaultPage}}",
   "Method": "GET",
   "Headers": {
     "Accept": "application/json",
-    "X-Api-Key": "{{apiKey}}"
+    "X-Api-Key": "{{env.apiKey}}"
   },
   "Variables": {
-    "defaultPage": "1"
+    "defaultPage": "1",
+    "apiKey": "abcxyz123",
+    "baseUrl": "https://api.example.com"
   },
   "Tests": [
     {
       "Title": "Status code is 200 OK",
-      "Case": "Assert.Response.StatusCodeIs(200)"
+      "Case": "$.response.getStatusCode() == 200"
     }
   ]
 }
@@ -116,7 +118,7 @@ API tests are stored as JSON files in `.apify/` (e.g., `.apify/users/get-users.j
 
 - **Variables**: Request-level variables override environment/project variables.
 - **Tags**: (Optional) For filtering tests.
-- **Tests**: Each assertion includes a title and a C#-like expression using the `Assert` object.
+- **Tests**: Each assertion includes a title and a ES6(JavaScript) expression using the `Assert` object.
 
 ---
 
@@ -130,10 +132,10 @@ Mocks are defined in `.mock.json` files under `.apify/mocks/` (e.g., `.apify/moc
 {
   "Name": "Mock User by ID",
   "Method": "GET",
-  "Endpoint": "/api/users/:id",
+  "Endpoint": "/api/users/{id}",
   "Responses": [
     {
-      "Condition": "path.id == \"1\"",
+      "Condition": "$.path.id == 1",
       "StatusCode": 200,
       "Headers": {
         "X-Source": "Mock-Conditional-User1"
@@ -143,7 +145,7 @@ Mocks are defined in `.mock.json` files under `.apify/mocks/` (e.g., `.apify/moc
         "name": "John Doe (Mocked)",
         "email": "john.mock@example.com",
         "requested_id": "{{path.id}}",
-        "random_code": "{{expr|> Faker.Random.Int(1000,9999)}}"
+        "random_code": "{# $.faker.datatype.number({min: 1000, max: 9999}) #}"
       }
     },
     {
@@ -160,9 +162,9 @@ Mocks are defined in `.mock.json` files under `.apify/mocks/` (e.g., `.apify/moc
 
 **Key Points:**
 
-- **Endpoint**: Supports path parameters (`:id` or `{id}`).
+- **Endpoint**: Supports path parameters (`{id}`).
 - **Responses**: Evaluated in order; first matching condition is used.
-  - **Condition**: C#-like expression using request data (`path`, `query`, `headers`, `body`).
+  - **Condition**: ES6(JavaScript) expression using request data (`path`, `query`, `headers`, `body`).
   - **ResponseTemplate**: Supports template variables for dynamic responses, including random data via Faker.
 
 ---

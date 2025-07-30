@@ -11,14 +11,14 @@ When managing data in your API tests, you can use dynamic placeholders and expre
 You can reference both environment variables and custom variables in your placeholders:
 
 - `env`: Retrieves the value of an environment variable by its `KEY`.
-- `vars`: Lets you define or override custom variables for your requests or tests, for example: `--vars "key1=value1;key2=value2"`. These variables are merged with the current environment and can be accessed using `{{ vars.key1 }}` or `{{ vars.key2 }}` in your placeholders.
+- `vars`: Lets you define or override custom variables for your requests or tests, for example: `--vars "key1=value1;key2=value2"`. These variables are merged with the current environment and can be accessed using `{{ env.key1 }}` or `{{ env.key2 }}` in your placeholders.
 
 For example:
 
 ```json
 {
   "userId": "{{ env.USER_ID }}",
-  "token": "{{ vars.AUTH_TOKEN }}"
+  "token": "{{ env.AUTH_TOKEN }}"
 }
 ```
 
@@ -43,7 +43,7 @@ Examples:
 
 You can use expressions to transform or compute values dynamically with the pipe operator:
 
-You can execute any C# expression on the fly using this syntax:
+You can execute any ES6(JavaScript) expression on the fly using this syntax:
 
 #### Examples
 

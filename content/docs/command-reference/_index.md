@@ -78,11 +78,11 @@ apify server:mock [--port <port>] [--directory <mocks_dir>] [--verbose]
 ```
 
 - `--port <port>`: Port for the server (default: from config or 1988).
-- `--directory <mocks_dir>`: Directory with mock files (default: `.apify`).
+- `--project <mocks_dir>`: Project directory with mock files (default: `.apify`).
 - `--verbose`, `-v`: Enable verbose logging.
 - Reads settings from `apify-config.json` (`MockServer` block); CLI options override config.
 
-### `apify list-env`
+### `apify list:env`
 
 Show all environments and their variables from `apify-config.json`.
 

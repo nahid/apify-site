@@ -18,12 +18,12 @@ This syntax is used to reference variables defined in your environment or projec
 ```json
 {
   "Name": "Get User",
-  "Url": "{{env.baseUrl}}/users/{{vars.userId}}",
+  "Url": "{{env.baseUrl}}/users/{{env.userId}}",
   "Method": "GET"
 }
 ```
 
-In this example, `{{env.baseUrl}}` and `{{vars.userId}}` will be replaced with their respective values before the request is sent.
+In this example, `{{env.baseUrl}}` and `{{env.userId}}` will be replaced with their respective values before the request is sent.
 
 #### `{# expression #}` - Expression Evaluation
 

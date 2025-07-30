@@ -12,11 +12,12 @@ The easiest way to get Apify is to download the pre-built executable from the [G
 
 ### CLI Installation
 
-For a quick installation via your command line, use the following platform-specific instructions. Remember to replace `[DOWNLOAD_URL]` with the actual download link for your OS and architecture from the [latest GitHub release](https://github.com/nahid/apify/releases/latest).
+For a quick installation via your command line, use the following platform-specific instructions. See the [latest GitHub release](https://github.com/nahid/apify/releases/latest) for the most up-to-date download links.
 
 #### Linux & macOS
 
 **For Linux Operating Systems:**
+
 
 ```bash
 curl -L https://github.com/nahid/apify/releases/latest/download/apify-linux-x64.zip -o apify.zip
@@ -26,10 +27,10 @@ curl -L https://github.com/nahid/apify/releases/latest/download/apify-linux-x64.
 **For macOS**
 
 ```bash
-# Download the latest release for macOS ARM64
+# macOS arm64 (Apple Silicon)
 curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-arm64.zip -o apify.zip
 
-# Or download the latest release for macOS Intel
+# macOS x64 (Intel)
 curl -L https://github.com/nahid/apify/releases/latest/download/apify-osx-x64.zip -o apify.zip
 ```
 

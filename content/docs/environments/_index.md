@@ -81,5 +81,5 @@ Global variables can be added directly to API definition files under the `Variab
 To display all environments and their variables defined in `apify-config.json`, use:
 
 ```bash
-apify list-env
+apify list:env
 ```
