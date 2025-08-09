@@ -1,11 +1,10 @@
 ---
 title: "Import"
-description: "Import API definitions and mock responses into Apify."
 ---
 
 Apify provides commands to import API definitions and mock responses from various formats, including Postman collections. This feature allows you to quickly set up your API testing environment with existing definitions.
 
-# Import Postman Collection (`import:postman`)
+## Import Postman Collection
 
 The `import:postman` command allows you to import a Postman collection and convert it into Apify's file-based format. This is useful for migrating your existing API collections to Apify.
 
