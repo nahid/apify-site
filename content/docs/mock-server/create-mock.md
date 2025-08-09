@@ -86,8 +86,6 @@ Mock APIs are defined in `.mock.json` files, typically located within the `.apif
 }
 ```
 
-```
-
 ### Fields Explained
 
 - **`Name`**: The name of the mock API (e.g., "Get User by ID").
@@ -129,4 +127,3 @@ Access data in templates with `{{ ... }}` (dot notation)
 - **`$.headers`**: Represents the request headers.
 - **`$.body`**: Represents the request body.
 - **`$.faker`**: Provides access to the [Faker.js](https://fakerjs.dev/) library for generating random data.
-```
